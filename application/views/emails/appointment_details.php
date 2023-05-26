@@ -36,6 +36,10 @@
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('timezone') ?></td>
                 <td style="padding: 3px;"><?= $appointment_timezone ?></td>
             </tr>
+            <tr>
+                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('token_number') ?></td>
+                <td style="padding: 3px;"><?= $appointment_token_number ?></td>
+            </tr>
         </table>
 
         <h2><?= lang('customer_details_title') ?></h2>
@@ -60,6 +64,7 @@
 
         <h2><?= lang('appointment_link_title') ?></h2>
         <a href="<?= $appointment_link ?>" style="width: 600px;"><?= $appointment_link ?></a>
+        <p> This will redirect you to the appointment management portal, where you can update the details accordingly.</p>
     </div>
 
     <div id="footer" style="padding: 10px; text-align: center; margin-top: 10px;

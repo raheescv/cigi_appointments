@@ -368,6 +368,7 @@ class Appointments extends EA_Controller {
             'appointment_data' => [
                 'start_datetime' => $appointment['start_datetime'],
                 'end_datetime' => $appointment['end_datetime'],
+                'token_number' => $appointment['token_number'],
             ],
             'provider_data' => [
                 'first_name' => $provider['first_name'],
@@ -575,8 +576,10 @@ class Appointments extends EA_Controller {
 
             $appointment['id_users_customer'] = $customer_id;
             $appointment['is_unavailable'] = (int)$appointment['is_unavailable']; // needs to be type casted
+            $appointment['token_number'] = $this->appointments_model->generateTokenNumber($appointment['start_datetime']);
             $appointment['id'] = $this->appointments_model->add($appointment);
             $appointment['hash'] = $this->appointments_model->get_value('hash', $appointment['id']);
+            
 
             $settings = [
                 'company_name' => $this->settings_model->get_setting('company_name'),
