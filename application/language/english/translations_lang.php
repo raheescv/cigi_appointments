@@ -46,7 +46,6 @@ $lang['provider'] = 'Provider';
 $lang['customer'] = 'Customer';
 $lang['start'] = 'Start';
 $lang['end'] = 'End';
-$lang['token_number'] = 'Token Number';
 $lang['name'] = 'Name';
 $lang['appointment_link_title'] = 'To edit or cancel this appointment, please click on the following link:';
 $lang['success'] = 'Success.';

@@ -603,7 +603,8 @@ class Appointments_model extends EA_Model {
             ->attendants_number;
     }
 
-    public function generateTokenNumber($appointmentDate)
+
+    public function generateTokenNumber($appointmentDate, $appointment_id)
     {
         // Get the current date
         //$currentDate = date('Y-m-d');
@@ -625,6 +626,15 @@ class Appointments_model extends EA_Model {
         //     $tokenNumber = 0;
         // }
 
+        if($tokenNumber){
+            $data = array(
+                'token_number' => $tokenNumber
+            );
+    
+            $this->db->where('id', $appointment_id);
+            $this->db->update('appointments', $data);    
+        }
+        
         return $tokenNumber;
     }
 }
