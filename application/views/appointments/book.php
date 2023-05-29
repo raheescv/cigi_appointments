@@ -468,6 +468,47 @@
         FrontendBook.initialize(true, GlobalVariables.manageMode);
         GeneralFunctions.enableLanguageSelection($('#select-language'));
     });
+    var weekDayId = GeneralFunctions.getWeekDayId(GlobalVariables.firstWeekday);
+    var maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 1);
+    $('#select-date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        firstDay: weekDayId,
+        minDate: 0,
+        maxDate: maxDate,
+        defaultDate: Date.today(),
+
+        dayNames: [
+            EALang.sunday, EALang.monday, EALang.tuesday, EALang.wednesday,
+            EALang.thursday, EALang.friday, EALang.saturday],
+        dayNamesShort: [EALang.sunday.substr(0, 3), EALang.monday.substr(0, 3),
+            EALang.tuesday.substr(0, 3), EALang.wednesday.substr(0, 3),
+            EALang.thursday.substr(0, 3), EALang.friday.substr(0, 3),
+            EALang.saturday.substr(0, 3)],
+        dayNamesMin: [EALang.sunday.substr(0, 2), EALang.monday.substr(0, 2),
+            EALang.tuesday.substr(0, 2), EALang.wednesday.substr(0, 2),
+            EALang.thursday.substr(0, 2), EALang.friday.substr(0, 2),
+            EALang.saturday.substr(0, 2)],
+        monthNames: [EALang.january, EALang.february, EALang.march, EALang.april,
+            EALang.may, EALang.june, EALang.july, EALang.august, EALang.september,
+            EALang.october, EALang.november, EALang.december],
+        prevText: EALang.previous,
+        nextText: EALang.next,
+        currentText: EALang.now,
+        closeText: EALang.close,
+
+        onSelect: function (dateText, instance) {
+            FrontendBookApi.getAvailableHours($(this).datepicker('getDate').toString('yyyy-MM-dd'));
+            FrontendBook.updateConfirmFrame();
+        },
+
+        onChangeMonthYear: function (year, month, instance) {
+            var currentDate = new Date(year, month - 1, 1);
+            FrontendBookApi.getUnavailableDates($('#select-provider').val(), $('#select-service').val(),
+                currentDate.toString('yyyy-MM-dd'));
+        }
+    });
+
 </script>
 
 <?php google_analytics_script(); ?>

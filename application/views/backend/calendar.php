@@ -499,20 +499,26 @@
 <?php require __DIR__ . '/working_plan_exceptions_modal.php' ?>
 
 <script>
+    
+    var popup = $('#manage-appointment');
+    popup.on('hidden.bs.modal', function () {
+        // Empty the div content
+        $('#tokenDiv').empty();
+    });
+
     //Generate token number
     function printElement(elementId) {
-        var printContents = document.getElementById(elementId).innerHTML;
-        var originalContents = document.body.innerHTML;
 
-        document.body.innerHTML = printContents;
-        window.print();
-
-        document.body.innerHTML = originalContents;
+        w=window.open();
+        w.document.write($('#tokenDiv').html());
+        w.print();
+        w.close();
+    
     }
 
     $('#generate-token').on('click', function() {
             var appointmentId = $('#appointment-id').val();
-    
+            
             $.ajax({
                 url: '<?php echo base_url("index.php/appointments/generateTokenNumber"); ?>',
                 method: 'POST',

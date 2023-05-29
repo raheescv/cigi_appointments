@@ -606,25 +606,24 @@ class Appointments_model extends EA_Model {
 
     public function generateTokenNumber($appointmentDate, $appointment_id)
     {
-        // Get the current date
-        //$currentDate = date('Y-m-d');
         $dateWithoutTime = date('Y-m-d', strtotime($appointmentDate));
 
-        // Get the maximum token number for the current date from the database
-        $this->db->select_max('token_number');
-        $this->db->where("DATE_FORMAT(start_datetime, '%Y-%m-%d') = '$dateWithoutTime'", NULL, FALSE);
-        $query = $this->db->get('appointments');
-        $result = $query->row();
-        $maxTokenNumber = $result->token_number;
+        $existingToken = $this->db->get_where('appointments', array('id' => $appointment_id))->row()->token_number;
 
-        // Increment the maximum token number or start from 1 if it doesn't exist
-        $tokenNumber = $maxTokenNumber ? $maxTokenNumber + 1 : 1;
+        if ($existingToken) {
+            // Token number already exists, use the existing token
+            $tokenNumber = $existingToken;
+        } else {
+            // Get the maximum token number for the current date from the database
+            $this->db->select_max('token_number');
+            $this->db->where("DATE_FORMAT(start_datetime, '%Y-%m-%d') = '$dateWithoutTime'", NULL, FALSE);
+            $query = $this->db->get('appointments');
+            $result = $query->row();
+            $maxTokenNumber = $result->token_number;
 
-        // Reset token number to 0 if it exceeds a specific value (optional)
-        // $maxTokenValue = 999; // Replace with your desired maximum value
-        // if ($tokenNumber > $maxTokenValue) {
-        //     $tokenNumber = 0;
-        // }
+            // Increment the maximum token number or start from 1 if it doesn't exist
+            $tokenNumber = $maxTokenNumber ? $maxTokenNumber + 1 : 1;
+        }
 
         if($tokenNumber){
             $data = array(
@@ -637,4 +636,7 @@ class Appointments_model extends EA_Model {
         
         return $tokenNumber;
     }
+
+    
+
 }
