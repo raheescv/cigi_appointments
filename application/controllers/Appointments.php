@@ -577,7 +577,6 @@ class Appointments extends EA_Controller {
             $appointment['is_unavailable'] = (int)$appointment['is_unavailable']; // needs to be type casted
             $appointment['id'] = $this->appointments_model->add($appointment);
             $appointment['hash'] = $this->appointments_model->get_value('hash', $appointment['id']);
-            
 
             $settings = [
                 'company_name' => $this->settings_model->get_setting('company_name'),
@@ -775,18 +774,6 @@ class Appointments extends EA_Controller {
         }
 
         return $provider_list;
-    }
-
-    public function generateTokenNumber()
-    {
-        $appointmentId = $this->input->post('appointment_id');
-        $bookingDate = $this->appointments_model->get_value('start_datetime',  $appointmentId);
-        
-        // Generate the token number based on your logic
-        $tokenNumber = $this->appointments_model->generateTokenNumber($bookingDate, $appointmentId);
-
-        // Return the generated token number
-        echo $tokenNumber;
     }
 
 

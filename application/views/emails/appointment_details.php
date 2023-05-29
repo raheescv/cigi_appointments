@@ -60,7 +60,6 @@
 
         <h2><?= lang('appointment_link_title') ?></h2>
         <a href="<?= $appointment_link ?>" style="width: 600px;"><?= $appointment_link ?></a>
-        <p> This will redirect you to the appointment management portal, where you can update the details accordingly.</p>
     </div>
 
     <div id="footer" style="padding: 10px; text-align: center; margin-top: 10px;

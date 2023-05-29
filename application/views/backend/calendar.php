@@ -38,6 +38,7 @@
         BackendCalendar.initialize(GlobalVariables.calendarView);
     });
 </script>
+
 <div class="container-fluid backend-page" id="calendar-page">
     <div class="row" id="calendar-toolbar">
         <div id="calendar-filter" class="col-12 col-sm-5">
@@ -364,11 +365,6 @@
             </div>
 
             <div class="modal-footer">
-                <div id="tokenDiv"></div>
-                <button id="generate-token" class="btn btn-primary">
-                    <i class="fas fa-check-square mr-2"></i>
-                    Generate Token
-                </button>
                 <button class="btn btn-outline-secondary" data-dismiss="modal">
                     <i class="fas fa-ban"></i>
                     <?= lang('cancel') ?>
@@ -498,34 +494,3 @@
 
 <?php require __DIR__ . '/working_plan_exceptions_modal.php' ?>
 
-<script>
-    //Generate token number
-    function printElement(elementId) {
-        var printContents = document.getElementById(elementId).innerHTML;
-        var originalContents = document.body.innerHTML;
-
-        document.body.innerHTML = printContents;
-        window.print();
-
-        document.body.innerHTML = originalContents;
-    }
-
-    $('#generate-token').on('click', function() {
-            var appointmentId = $('#appointment-id').val();
-    
-            $.ajax({
-                url: '<?php echo base_url("index.php/appointments/generateTokenNumber"); ?>',
-                method: 'POST',
-                data: { appointment_id: appointmentId , csrfToken: GlobalVariables.csrfToken,},
-                success: function(response) {
-                    console.log(response);
-                    $('#tokenDiv').text('Token Number: ' + response);
-                    printElement('tokenDiv');
-                },
-                error: function(xhr, status, error) {
-                    // Handle any errors that occur during the AJAX request
-                    console.log(error);
-                }
-            });
-        });
-</script>
