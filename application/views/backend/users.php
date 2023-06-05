@@ -184,14 +184,14 @@
 
                                     <div class="form-group">
                                         <label for="provider-address">
-                                            <?= lang('address') ?>
+                                            <?= lang('qualification') ?>
                                         </label>
                                         <input id="provider-address" class="form-control" maxlength="256">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="provider-city">
-                                            <?= lang('city') ?>
+                                            <?= lang('city_or_state') ?>
 
                                         </label>
                                         <input id="provider-city" class="form-control" maxlength="256">
@@ -206,7 +206,7 @@
 
                                     <div class="form-group">
                                         <label for="provider-zip-code">
-                                            <?= lang('zip_code') ?>
+                                            <?= lang('state') ?>
 
                                         </label>
                                         <input id="provider-zip-code" class="form-control" maxlength="64">
@@ -214,7 +214,7 @@
 
                                     <div class="form-group">
                                         <label for="provider-notes">
-                                            <?= lang('notes') ?>
+                                            <?= lang('query_or_notes') ?>
                                         </label>
                                         <textarea id="provider-notes" class="form-control" rows="3"></textarea>
                                     </div>
@@ -473,14 +473,14 @@
 
                             <div class="form-group">
                                 <label for="secretary-address">
-                                    <?= lang('address') ?>
+                                    <?= lang('qualification') ?>
                                 </label>
                                 <input id="secretary-address" class="form-control" maxlength="256">
                             </div>
 
                             <div class="form-group">
                                 <label for="secretary-city">
-                                    <?= lang('city') ?>
+                                    <?= lang('city_or_state') ?>
 
                                 </label>
                                 <input id="secretary-city" class="form-control" maxlength="256">
@@ -495,7 +495,7 @@
 
                             <div class="form-group">
                                 <label for="secretary-zip-code">
-                                    <?= lang('zip_code') ?>
+                                    <?= lang('state') ?>
 
                                 </label>
                                 <input id="secretary-zip-code" class="form-control" maxlength="64">
@@ -503,7 +503,7 @@
 
                             <div class="form-group">
                                 <label for="secretary-notes">
-                                    <?= lang('notes') ?>
+                                    <?= lang('query_or_notes') ?>
                                 </label>
                                 <textarea id="secretary-notes" class="form-control" rows="3"></textarea>
                             </div>
@@ -681,14 +681,14 @@
 
                             <div class="form-group">
                                 <label for="admin-address">
-                                    <?= lang('address') ?>
+                                    <?= lang('qualification') ?>
                                 </label>
                                 <input id="admin-address" class="form-control" maxlength="256">
                             </div>
 
                             <div class="form-group">
                                 <label for="admin-city">
-                                    <?= lang('city') ?>
+                                    <?= lang('city_or_state') ?>
 
                                 </label>
                                 <input id="admin-city" class="form-control" maxlength="256">
@@ -703,7 +703,7 @@
 
                             <div class="form-group">
                                 <label for="admin-zip-code">
-                                    <?= lang('zip_code') ?>
+                                    <?= lang('state') ?>
 
                                 </label>
                                 <input id="admin-zip-code" class="form-control" maxlength="64">
@@ -711,7 +711,7 @@
 
                             <div class="form-group">
                                 <label for="admin-notes">
-                                    <?= lang('notes') ?>
+                                    <?= lang('query_or_notes') ?>
                                 </label>
                                 <textarea id="admin-notes" class="form-control" rows="3"></textarea>
                             </div>

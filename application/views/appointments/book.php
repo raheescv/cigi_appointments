@@ -29,7 +29,7 @@
             <!-- FRAME TOP BAR -->
 
             <div id="header">
-                <span id="company-name"><?= $company_name ?></span>
+                <span id="company-name"> <img src="<?= asset_url('assets/img/Cigi_60x60.png') ?>" alt=""> <?= $company_name ?></span>
 
                 <div id="steps">
                     <div id="step-1" class="book-step active-step"
@@ -281,25 +281,27 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="address" class="control-label">
-                                    <?= lang('address') ?>
+                                    <?= lang('qualification') ?>
+                                    <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" id="address" class="form-control" maxlength="120"/>
+                                <input type="text" id="address" class="required form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="city" class="control-label">
-                                    <?= lang('city') ?>
+                                    <?= lang('city_or_state') ?>
+                                    <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" id="city" class="form-control" maxlength="120"/>
+                                <input type="text" id="city" class="required form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="zip-code" class="control-label">
-                                    <?= lang('zip_code') ?>
+                                    <?= lang('state') ?>
                                 </label>
                                 <input type="text" id="zip-code" class="form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="notes" class="control-label">
-                                    <?= lang('notes') ?>
+                                    <?= lang('query_or_notes') ?>
                                 </label>
                                 <textarea id="notes" maxlength="500" class="form-control" rows="1"></textarea>
                             </div>
@@ -397,19 +399,20 @@
             <div id="frame-footer">
                 <small>
                     <span class="footer-powered-by">
-                        
+
 
                         <a href="https://easyappointments.org" target="_blank"></a>
                     </span>
 
+                        <?php if(false){ ?>
                     <span class="footer-options">
-                      
 
                         <a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
                             <i class="fas fa-sign-in-alt mr-2"></i>
                             <?= $this->session->user_id ? lang('backend_section') : lang('login') ?>
                         </a>
                     </span>
+                        <?php } ?>
                 </small>
             </div>
         </div>
@@ -446,7 +449,7 @@
         csrfToken: <?= json_encode($this->security->get_csrf_hash()) ?>
     };
 
-    var EALang = <?= json_encode($this->lang->language) ?>;
+    var EALang = <?= json_encode($this->lang->language) ?>;add
     var availableLanguages = <?= json_encode(config('available_languages')) ?>;
 </script>
 

@@ -427,12 +427,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="address"><?= lang('address') ?></label>
+                            <label for="address"><?= lang('qualification') ?></label>
                             <input id="address" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="city"><?= lang('city') ?></label>
+                            <label for="city"><?= lang('city_or_state') ?></label>
                             <input id="city" class="form-control">
                         </div>
 
@@ -442,12 +442,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="zip-code"><?= lang('zip_code') ?></label>
+                            <label for="zip-code"><?= lang('state') ?></label>
                             <input id="zip-code" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="notes"><?= lang('notes') ?></label>
+                            <label for="notes"><?= lang('query_or_notes') ?></label>
                             <textarea id="notes" class="form-control" rows="3"></textarea>
                         </div>
                     </fieldset>
