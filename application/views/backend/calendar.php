@@ -228,7 +228,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="appointment-notes" class="control-label"><?= lang('query_or_notes') ?></label>
+                                    <label for="appointment-notes" class="control-label"><?= lang('notes') ?></label>
                                     <textarea id="appointment-notes" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
@@ -332,28 +332,28 @@
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="address" class="control-label">
-                                        <?= lang('qualification') ?>
+                                        <?= lang('address') ?>
                                     </label>
                                     <input id="address" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="city" class="control-label">
-                                        <?= lang('city_or_state') ?>
+                                        <?= lang('city') ?>
                                     </label>
                                     <input id="city" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="zip-code" class="control-label">
-                                        <?= lang('state') ?>
+                                        <?= lang('zip_code') ?>
                                     </label>
                                     <input id="zip-code" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="customer-notes" class="control-label">
-                                        <?= lang('query_or_notes') ?>
+                                        <?= lang('notes') ?>
                                     </label>
                                     <textarea id="customer-notes" rows="2" class="form-control"></textarea>
                                 </div>
@@ -442,7 +442,7 @@
 
                         <div class="form-group">
                             <label for="unavailable-notes" class="control-label">
-                                <?= lang('query_or_notes') ?>
+                                <?= lang('notes') ?>
                             </label>
                             <textarea id="unavailable-notes" rows="3" class="form-control"></textarea>
                         </div>

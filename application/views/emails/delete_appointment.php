@@ -53,7 +53,7 @@
                 <td style="padding: 3px;"><?= $customer_phone ?></td>
             </tr>
             <tr>
-                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('qualification') ?></td>
+                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('address') ?></td>
                 <td style="padding: 3px;"><?= $customer_address ?></td>
             </tr>
         </table>

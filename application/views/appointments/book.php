@@ -281,27 +281,27 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="address" class="control-label">
-                                    <?= lang('qualification') ?>
+                                    <?= lang('address') ?>
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" id="address" class="required form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="city" class="control-label">
-                                    <?= lang('city_or_state') ?>
+                                    <?= lang('city') ?>
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" id="city" class="required form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="zip-code" class="control-label">
-                                    <?= lang('state') ?>
+                                    <?= lang('zip_code') ?>
                                 </label>
                                 <input type="text" id="zip-code" class="form-control" maxlength="120"/>
                             </div>
                             <div class="form-group">
                                 <label for="notes" class="control-label">
-                                    <?= lang('query_or_notes') ?>
+                                    <?= lang('notes') ?>
                                 </label>
                                 <textarea id="notes" maxlength="500" class="form-control" rows="1"></textarea>
                             </div>

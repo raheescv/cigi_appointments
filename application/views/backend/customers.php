@@ -131,14 +131,14 @@
 
                     <div class="form-group">
                         <label class="control-label" for="address">
-                            <?= lang('qualification') ?>
+                            <?= lang('address') ?>
                         </label>
                         <input id="address" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="city">
-                            <?= lang('city_or_state') ?>
+                            <?= lang('city') ?>
 
                         </label>
                         <input id="city" class="form-control">
@@ -146,7 +146,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="zip-code">
-                            <?= lang('state') ?>
+                            <?= lang('zip_code') ?>
                         </label>
                         <input id="zip-code" class="form-control">
                     </div>
@@ -169,7 +169,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="notes">
-                            <?= lang('query_or_notes') ?>
+                            <?= lang('notes') ?>
 
                         </label>
                         <textarea id="notes" rows="4" class="form-control"></textarea>
