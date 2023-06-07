@@ -472,8 +472,9 @@
         GeneralFunctions.enableLanguageSelection($('#select-language'));
     });
     var weekDayId = GeneralFunctions.getWeekDayId(GlobalVariables.firstWeekday);
+    
     var maxDate = new Date();
-    maxDate.setMonth(maxDate.getMonth() + 1);
+    maxDate.setDate(maxDate.getDate() + 7);
     $('#select-date').datepicker({
         dateFormat: 'dd-mm-yy',
         firstDay: weekDayId,
