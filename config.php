@@ -47,9 +47,9 @@ class Config {
     // GOOGLE CALENDAR SYNC
     // ------------------------------------------------------------------------
 
-    const GOOGLE_SYNC_FEATURE   = FALSE; // Enter TRUE or FALSE
-    const GOOGLE_PRODUCT_NAME   = '';
-    const GOOGLE_CLIENT_ID      = '';
-    const GOOGLE_CLIENT_SECRET  = '';
-    const GOOGLE_API_KEY        = '';
+    const GOOGLE_SYNC_FEATURE   = TRUE; // Enter TRUE or FALSE
+    const GOOGLE_PRODUCT_NAME   = 'CIGI Appointments';
+    const GOOGLE_CLIENT_ID      = '602520676223-mgktvbpplua832o1qebu5k6217duthr1.apps.googleusercontent.com';
+    const GOOGLE_CLIENT_SECRET  = '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';
+    const GOOGLE_API_KEY        = 'AIzaSyC4R2g_OuzvFzFInipyVN84gts3NxZjmrw';
 }
