@@ -54,7 +54,9 @@ class Products extends \Google\Service\Resource
    * @param string $productId The REST ID of the product.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string feedId The Content API Supplemental Feed ID.
+   * @opt_param string feedId The Content API Supplemental Feed ID. If present
+   * then product deletion applies to the data in a supplemental feed. If absent,
+   * entire product will be deleted.
    */
   public function delete($merchantId, $productId, $optParams = [])
   {
@@ -87,7 +89,8 @@ class Products extends \Google\Service\Resource
    * @param Product $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string feedId The Content API Supplemental Feed ID.
+   * @opt_param string feedId The Content API Supplemental Feed ID. If present
+   * then product insertion applies to the data in a supplemental feed.
    * @return Product
    */
   public function insert($merchantId, Product $postBody, $optParams = [])
@@ -129,9 +132,9 @@ class Products extends \Google\Service\Resource
    * @opt_param string updateMask The comma-separated list of product attributes
    * to be updated. Example: `"title,salePrice"`. Attributes specified in the
    * update mask without a value specified in the body will be deleted from the
-   * product. Only top-level product attributes can be updated. If not defined,
-   * product attributes with set values will be updated and other attributes will
-   * stay unchanged.
+   * product. *You must specify the update mask to delete attributes.* Only top-
+   * level product attributes can be updated. If not defined, product attributes
+   * with set values will be updated and other attributes will stay unchanged.
    * @return Product
    */
   public function update($merchantId, $productId, Product $postBody, $optParams = [])

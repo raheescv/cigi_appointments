@@ -19,6 +19,9 @@ namespace Google\Service\TagManager;
 
 class Entity extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $changeStatus;
   protected $clientType = Client::class;
   protected $clientDataType = '';
@@ -26,15 +29,23 @@ class Entity extends \Google\Model
   protected $folderDataType = '';
   protected $tagType = Tag::class;
   protected $tagDataType = '';
+  protected $transformationType = Transformation::class;
+  protected $transformationDataType = '';
   protected $triggerType = Trigger::class;
   protected $triggerDataType = '';
   protected $variableType = Variable::class;
   protected $variableDataType = '';
 
+  /**
+   * @param string
+   */
   public function setChangeStatus($changeStatus)
   {
     $this->changeStatus = $changeStatus;
   }
+  /**
+   * @return string
+   */
   public function getChangeStatus()
   {
     return $this->changeStatus;
@@ -80,6 +91,20 @@ class Entity extends \Google\Model
   public function getTag()
   {
     return $this->tag;
+  }
+  /**
+   * @param Transformation
+   */
+  public function setTransformation(Transformation $transformation)
+  {
+    $this->transformation = $transformation;
+  }
+  /**
+   * @return Transformation
+   */
+  public function getTransformation()
+  {
+    return $this->transformation;
   }
   /**
    * @param Trigger

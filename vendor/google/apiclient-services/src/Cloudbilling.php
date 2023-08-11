@@ -28,7 +28,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://cloud.google.com/billing/" target="_blank">Documentation</a>
+ * <a href="https://cloud.google.com/billing/docs/apis" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -41,7 +41,7 @@ class Cloudbilling extends \Google\Service
   /** View your Google Cloud Platform billing accounts. */
   const CLOUD_BILLING_READONLY =
       "https://www.googleapis.com/auth/cloud-billing.readonly";
-  /** See, edit, configure, and delete your Google Cloud Platform data. */
+  /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 

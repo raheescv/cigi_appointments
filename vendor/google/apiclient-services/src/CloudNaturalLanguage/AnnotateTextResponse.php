@@ -26,7 +26,12 @@ class AnnotateTextResponse extends \Google\Collection
   protected $documentSentimentDataType = '';
   protected $entitiesType = Entity::class;
   protected $entitiesDataType = 'array';
+  /**
+   * @var string
+   */
   public $language;
+  protected $moderationCategoriesType = ClassificationCategory::class;
+  protected $moderationCategoriesDataType = 'array';
   protected $sentencesType = Sentence::class;
   protected $sentencesDataType = 'array';
   protected $tokensType = Token::class;
@@ -74,13 +79,33 @@ class AnnotateTextResponse extends \Google\Collection
   {
     return $this->entities;
   }
+  /**
+   * @param string
+   */
   public function setLanguage($language)
   {
     $this->language = $language;
   }
+  /**
+   * @return string
+   */
   public function getLanguage()
   {
     return $this->language;
+  }
+  /**
+   * @param ClassificationCategory[]
+   */
+  public function setModerationCategories($moderationCategories)
+  {
+    $this->moderationCategories = $moderationCategories;
+  }
+  /**
+   * @return ClassificationCategory[]
+   */
+  public function getModerationCategories()
+  {
+    return $this->moderationCategories;
   }
   /**
    * @param Sentence[]

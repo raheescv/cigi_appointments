@@ -25,7 +25,7 @@ use Google\Service\Directory\CalendarResources;
  * Typical usage is:
  *  <code>
  *   $adminService = new Google\Service\Directory(...);
- *   $calendars = $adminService->calendars;
+ *   $calendars = $adminService->resources_calendars;
  *  </code>
  */
 class ResourcesCalendars extends \Google\Service\Resource
@@ -116,7 +116,7 @@ class ResourcesCalendars extends \Google\Service\Resource
     return $this->call('list', [$params], CalendarResources::class);
   }
   /**
-   * Patches a calendar resource via Apiary Patch Orchestration. (calendars.patch)
+   * Patches a calendar resource. (calendars.patch)
    *
    * @param string $customer The unique ID for the customer's Google Workspace
    * account. As an account administrator, you can also use the `my_customer`

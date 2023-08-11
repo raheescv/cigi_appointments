@@ -34,7 +34,7 @@ use Google\Client;
  */
 class Translate extends \Google\Service
 {
-  /** See, edit, configure, and delete your Google Cloud Platform data. */
+  /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
   /** Translate text from one language to another using Google Translate. */
@@ -43,7 +43,11 @@ class Translate extends \Google\Service
 
   public $projects;
   public $projects_locations;
+  public $projects_locations_datasets;
+  public $projects_locations_datasets_examples;
   public $projects_locations_glossaries;
+  public $projects_locations_glossaries_glossaryEntries;
+  public $projects_locations_models;
   public $projects_locations_operations;
 
   /**
@@ -96,6 +100,16 @@ class Translate extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'romanizeText' => [
+              'path' => 'v3/{+parent}:romanizeText',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'translateText' => [
               'path' => 'v3/{+parent}:translateText',
               'httpMethod' => 'POST',
@@ -116,7 +130,17 @@ class Translate extends \Google\Service
         'locations',
         [
           'methods' => [
-            'batchTranslateText' => [
+            'batchTranslateDocument' => [
+              'path' => 'v3/{+parent}:batchTranslateDocument',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'batchTranslateText' => [
               'path' => 'v3/{+parent}:batchTranslateText',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -186,6 +210,26 @@ class Translate extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'romanizeText' => [
+              'path' => 'v3/{+parent}:romanizeText',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'translateDocument' => [
+              'path' => 'v3/{+parent}:translateDocument',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'translateText' => [
               'path' => 'v3/{+parent}:translateText',
               'httpMethod' => 'POST',
@@ -194,6 +238,116 @@ class Translate extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_datasets = new Translate\Resource\ProjectsLocationsDatasets(
+        $this,
+        $this->serviceName,
+        'datasets',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v3/{+parent}/datasets',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'exportData' => [
+              'path' => 'v3/{+dataset}:exportData',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'dataset' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'importData' => [
+              'path' => 'v3/{+dataset}:importData',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'dataset' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v3/{+parent}/datasets',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_datasets_examples = new Translate\Resource\ProjectsLocationsDatasetsExamples(
+        $this,
+        $this->serviceName,
+        'examples',
+        [
+          'methods' => [
+            'list' => [
+              'path' => 'v3/{+parent}/examples',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],
@@ -238,6 +392,150 @@ class Translate extends \Google\Service
               ],
             ],'list' => [
               'path' => 'v3/{+parent}/glossaries',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_glossaries_glossaryEntries = new Translate\Resource\ProjectsLocationsGlossariesGlossaryEntries(
+        $this,
+        $this->serviceName,
+        'glossaryEntries',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v3/{+parent}/glossaryEntries',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v3/{+parent}/glossaryEntries',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_models = new Translate\Resource\ProjectsLocationsModels(
+        $this,
+        $this->serviceName,
+        'models',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v3/{+parent}/models',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v3/{+parent}/models',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

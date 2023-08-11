@@ -20,7 +20,7 @@ namespace Google\Service;
 use Google\Client;
 
 /**
- * Service definition for AIPlatformNotebooks (v1).
+ * Service definition for AIPlatformNotebooks (v2).
  *
  * <p>
  * Notebooks API is used to manage notebook resources in Google Cloud.</p>
@@ -34,17 +34,13 @@ use Google\Client;
  */
 class AIPlatformNotebooks extends \Google\Service
 {
-  /** See, edit, configure, and delete your Google Cloud Platform data. */
+  /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $projects_locations;
-  public $projects_locations_environments;
-  public $projects_locations_executions;
   public $projects_locations_instances;
   public $projects_locations_operations;
-  public $projects_locations_runtimes;
-  public $projects_locations_schedules;
 
   /**
    * Constructs the internal representation of the AIPlatformNotebooks service.
@@ -59,7 +55,7 @@ class AIPlatformNotebooks extends \Google\Service
     $this->rootUrl = $rootUrl ?: 'https://notebooks.googleapis.com/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
-    $this->version = 'v1';
+    $this->version = 'v2';
     $this->serviceName = 'notebooks';
 
     $this->projects_locations = new AIPlatformNotebooks\Resource\ProjectsLocations(
@@ -69,7 +65,7 @@ class AIPlatformNotebooks extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -79,7 +75,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+name}/locations',
+              'path' => 'v2/{+name}/locations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -88,138 +84,6 @@ class AIPlatformNotebooks extends \Google\Service
                   'required' => true,
                 ],
                 'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_environments = new AIPlatformNotebooks\Resource\ProjectsLocationsEnvironments(
-        $this,
-        $this->serviceName,
-        'environments',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/environments',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'environmentId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/environments',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_executions = new AIPlatformNotebooks\Resource\ProjectsLocationsExecutions(
-        $this,
-        $this->serviceName,
-        'executions',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/executions',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'executionId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/executions',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'orderBy' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -242,8 +106,18 @@ class AIPlatformNotebooks extends \Google\Service
         'instances',
         [
           'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/instances',
+            'checkUpgradability' => [
+              'path' => 'v2/{+notebookInstance}:checkUpgradability',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'notebookInstance' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'create' => [
+              'path' => 'v2/{+parent}/instances',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -255,10 +129,28 @@ class AIPlatformNotebooks extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'diagnose' => [
+              'path' => 'v2/{+name}:diagnose',
+              'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
                   'location' => 'path',
@@ -267,7 +159,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -277,7 +169,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
+              'path' => 'v2/{+resource}:getIamPolicy',
               'httpMethod' => 'GET',
               'parameters' => [
                 'resource' => [
@@ -290,28 +182,8 @@ class AIPlatformNotebooks extends \Google\Service
                   'type' => 'integer',
                 ],
               ],
-            ],'getInstanceHealth' => [
-              'path' => 'v1/{+name}:getInstanceHealth',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'isUpgradeable' => [
-              'path' => 'v1/{+notebookInstance}:isUpgradeable',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'notebookInstance' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],'list' => [
-              'path' => 'v1/{+parent}/instances',
+              'path' => 'v2/{+parent}/instances',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -328,18 +200,26 @@ class AIPlatformNotebooks extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'register' => [
-              'path' => 'v1/{+parent}/instances:register',
-              'httpMethod' => 'POST',
+            ],'patch' => [
+              'path' => 'v2/{+name}',
+              'httpMethod' => 'PATCH',
               'parameters' => [
-                'parent' => [
+                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
               ],
-            ],'report' => [
-              'path' => 'v1/{+name}:report',
+            ],'reportInfoSystem' => [
+              'path' => 'v2/{+name}:reportInfoSystem',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -349,7 +229,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'reset' => [
-              'path' => 'v1/{+name}:reset',
+              'path' => 'v2/{+name}:reset',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -359,18 +239,8 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'rollback' => [
-              'path' => 'v1/{+name}:rollback',
+              'path' => 'v2/{+name}:rollback',
               'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'setAccelerator' => [
-              'path' => 'v1/{+name}:setAccelerator',
-              'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
                   'location' => 'path',
@@ -379,7 +249,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'setIamPolicy' => [
-              'path' => 'v1/{+resource}:setIamPolicy',
+              'path' => 'v2/{+resource}:setIamPolicy',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -388,28 +258,8 @@ class AIPlatformNotebooks extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'setLabels' => [
-              'path' => 'v1/{+name}:setLabels',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'setMachineType' => [
-              'path' => 'v1/{+name}:setMachineType',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],'start' => [
-              'path' => 'v1/{+name}:start',
+              'path' => 'v2/{+name}:start',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -419,7 +269,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'stop' => [
-              'path' => 'v1/{+name}:stop',
+              'path' => 'v2/{+name}:stop',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -429,7 +279,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
+              'path' => 'v2/{+resource}:testIamPermissions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -438,28 +288,8 @@ class AIPlatformNotebooks extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'updateConfig' => [
-              'path' => 'v1/{+name}:updateConfig',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'updateShieldedInstanceConfig' => [
-              'path' => 'v1/{+name}:updateShieldedInstanceConfig',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],'upgrade' => [
-              'path' => 'v1/{+name}:upgrade',
+              'path' => 'v2/{+name}:upgrade',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -468,8 +298,8 @@ class AIPlatformNotebooks extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'upgradeInternal' => [
-              'path' => 'v1/{+name}:upgradeInternal',
+            ],'upgradeSystem' => [
+              'path' => 'v2/{+name}:upgradeSystem',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -489,7 +319,7 @@ class AIPlatformNotebooks extends \Google\Service
         [
           'methods' => [
             'cancel' => [
-              'path' => 'v1/{+name}:cancel',
+              'path' => 'v2/{+name}:cancel',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -499,7 +329,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -509,7 +339,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -519,7 +349,7 @@ class AIPlatformNotebooks extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+name}/operations',
+              'path' => 'v2/{+name}/operations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -538,198 +368,6 @@ class AIPlatformNotebooks extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_runtimes = new AIPlatformNotebooks\Resource\ProjectsLocationsRuntimes(
-        $this,
-        $this->serviceName,
-        'runtimes',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/runtimes',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'runtimeId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/runtimes',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'reportEvent' => [
-              'path' => 'v1/{+name}:reportEvent',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'reset' => [
-              'path' => 'v1/{+name}:reset',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'start' => [
-              'path' => 'v1/{+name}:start',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'stop' => [
-              'path' => 'v1/{+name}:stop',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'switch' => [
-              'path' => 'v1/{+name}:switch',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_schedules = new AIPlatformNotebooks\Resource\ProjectsLocationsSchedules(
-        $this,
-        $this->serviceName,
-        'schedules',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/schedules',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'scheduleId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/schedules',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'orderBy' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'trigger' => [
-              'path' => 'v1/{+name}:trigger',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ],
               ],
             ],

@@ -31,7 +31,7 @@ use Google\Service\Directory\Schemas as SchemasModel;
 class Schemas extends \Google\Service\Resource
 {
   /**
-   * Delete schema (schemas.delete)
+   * Deletes a schema. (schemas.delete)
    *
    * @param string $customerId Immutable ID of the Google Workspace account.
    * @param string $schemaKey Name or immutable ID of the schema.
@@ -44,9 +44,15 @@ class Schemas extends \Google\Service\Resource
     return $this->call('delete', [$params]);
   }
   /**
-   * Retrieve schema (schemas.get)
+   * Retrieves a schema. (schemas.get)
    *
-   * @param string $customerId Immutable ID of the Google Workspace account.
+   * @param string $customerId The unique ID for the customer's Google Workspace
+   * account. In case of a multi-domain account, to fetch all groups for a
+   * customer, use this field instead of `domain`. You can also use the
+   * `my_customer` alias to represent your account's `customerId`. The
+   * `customerId` is also returned as part of the [Users](/admin-
+   * sdk/directory/v1/reference/users) resource. You must provide either the
+   * `customer` or the `domain` parameter.
    * @param string $schemaKey Name or immutable ID of the schema.
    * @param array $optParams Optional parameters.
    * @return Schema
@@ -58,7 +64,7 @@ class Schemas extends \Google\Service\Resource
     return $this->call('get', [$params], Schema::class);
   }
   /**
-   * Create schema. (schemas.insert)
+   * Creates a schema. (schemas.insert)
    *
    * @param string $customerId Immutable ID of the Google Workspace account.
    * @param Schema $postBody
@@ -72,9 +78,15 @@ class Schemas extends \Google\Service\Resource
     return $this->call('insert', [$params], Schema::class);
   }
   /**
-   * Retrieve all schemas for a customer (schemas.listSchemas)
+   * Retrieves all schemas for a customer. (schemas.listSchemas)
    *
-   * @param string $customerId Immutable ID of the Google Workspace account.
+   * @param string $customerId The unique ID for the customer's Google Workspace
+   * account. In case of a multi-domain account, to fetch all groups for a
+   * customer, use this field instead of `domain`. You can also use the
+   * `my_customer` alias to represent your account's `customerId`. The
+   * `customerId` is also returned as part of the [Users](/admin-
+   * sdk/directory/v1/reference/users) resource. You must provide either the
+   * `customer` or the `domain` parameter.
    * @param array $optParams Optional parameters.
    * @return SchemasModel
    */
@@ -85,7 +97,7 @@ class Schemas extends \Google\Service\Resource
     return $this->call('list', [$params], SchemasModel::class);
   }
   /**
-   * Patch Schema via Apiary Patch Orchestration (schemas.patch)
+   * Patches a schema. (schemas.patch)
    *
    * @param string $customerId Immutable ID of the Google Workspace account.
    * @param string $schemaKey Name or immutable ID of the schema.
@@ -100,7 +112,7 @@ class Schemas extends \Google\Service\Resource
     return $this->call('patch', [$params], Schema::class);
   }
   /**
-   * Update schema (schemas.update)
+   * Updates a schema. (schemas.update)
    *
    * @param string $customerId Immutable ID of the Google Workspace account.
    * @param string $schemaKey Name or immutable ID of the schema.

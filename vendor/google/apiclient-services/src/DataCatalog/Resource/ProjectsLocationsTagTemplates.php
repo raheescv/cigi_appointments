@@ -30,7 +30,7 @@ use Google\Service\DataCatalog\TestIamPermissionsResponse;
  * Typical usage is:
  *  <code>
  *   $datacatalogService = new Google\Service\DataCatalog(...);
- *   $tagTemplates = $datacatalogService->tagTemplates;
+ *   $tagTemplates = $datacatalogService->projects_locations_tagTemplates;
  *  </code>
  */
 class ProjectsLocationsTagTemplates extends \Google\Service\Resource
@@ -38,8 +38,8 @@ class ProjectsLocationsTagTemplates extends \Google\Service\Resource
   /**
    * Creates a tag template. You must enable the Data Catalog API in the project
    * identified by the `parent` parameter. For more information, see [Data Catalog
-   * resource project] (https://cloud.google.com/data-catalog/docs/concepts
-   * /resource-project). (tagTemplates.create)
+   * resource project] (https://cloud.google.com/data-
+   * catalog/docs/concepts/resource-project). (tagTemplates.create)
    *
    * @param string $parent Required. The name of the project and the template
    * location [region](https://cloud.google.com/data-
@@ -62,8 +62,9 @@ class ProjectsLocationsTagTemplates extends \Google\Service\Resource
   /**
    * Deletes a tag template and all tags that use it. You must enable the Data
    * Catalog API in the project identified by the `name` parameter. For more
-   * information, see [Data Catalog resource project](https://cloud.google.com
-   * /data-catalog/docs/concepts/resource-project). (tagTemplates.delete)
+   * information, see [Data Catalog resource
+   * project](https://cloud.google.com/data-catalog/docs/concepts/resource-
+   * project). (tagTemplates.delete)
    *
    * @param string $name Required. The name of the tag template to delete.
    * @param array $optParams Optional parameters.
@@ -103,8 +104,9 @@ class ProjectsLocationsTagTemplates extends \Google\Service\Resource
    * groups. (tagTemplates.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See the operation documentation for the appropriate value for this
-   * field.
+   * requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
@@ -120,8 +122,8 @@ class ProjectsLocationsTagTemplates extends \Google\Service\Resource
    * These fields are separate resources with their own create, update, and delete
    * methods. You must enable the Data Catalog API in the project identified by
    * the `tag_template.name` parameter. For more information, see [Data Catalog
-   * resource project](https://cloud.google.com/data-catalog/docs/concepts
-   * /resource-project). (tagTemplates.patch)
+   * resource project](https://cloud.google.com/data-
+   * catalog/docs/concepts/resource-project). (tagTemplates.patch)
    *
    * @param string $name The resource name of the tag template in URL format.
    * Note: The tag template itself and its child resources might not be stored in
@@ -130,10 +132,11 @@ class ProjectsLocationsTagTemplates extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask Names of fields whose values to overwrite on a
-   * tag template. Currently, only `display_name` can be overwritten. If this
-   * parameter is absent or empty, all modifiable fields are overwritten. If such
-   * fields are non-required and omitted in the request body, their values are
-   * emptied.
+   * tag template. Currently, only `display_name` and `is_publicly_readable` can
+   * be overwritten. If this parameter is absent or empty, all modifiable fields
+   * are overwritten. If such fields are non-required and omitted in the request
+   * body, their values are emptied. Note: Updating the `is_publicly_readable`
+   * field may require up to 12 hours to take effect in search results.
    * @return GoogleCloudDatacatalogV1TagTemplate
    */
   public function patch($name, GoogleCloudDatacatalogV1TagTemplate $postBody, $optParams = [])
@@ -154,8 +157,9 @@ class ProjectsLocationsTagTemplates extends \Google\Service\Resource
    * (tagTemplates.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See the operation documentation for the appropriate value for this
-   * field.
+   * specified. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
@@ -176,8 +180,9 @@ class ProjectsLocationsTagTemplates extends \Google\Service\Resource
    * (tagTemplates.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See the operation documentation for the appropriate value
-   * for this field.
+   * being requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse

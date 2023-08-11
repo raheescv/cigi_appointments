@@ -20,11 +20,12 @@ namespace Google\Service;
 use Google\Client;
 
 /**
- * Service definition for DisplayVideo (v1).
+ * Service definition for DisplayVideo (v2).
  *
  * <p>
- * Display & Video 360 API allows users to manage and create campaigns and
- * reports.</p>
+ * Display & Video 360 API allows users to automate complex Display & Video 360
+ * workflows, such as creating insertion orders and setting targeting options
+ * for individual line items.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -66,12 +67,17 @@ class DisplayVideo extends \Google\Service
   public $advertisers_negativeKeywordLists;
   public $advertisers_negativeKeywordLists_negativeKeywords;
   public $advertisers_targetingTypes_assignedTargetingOptions;
+  public $advertisers_youtubeAdGroupAds;
+  public $advertisers_youtubeAdGroups;
+  public $advertisers_youtubeAdGroups_targetingTypes_assignedTargetingOptions;
   public $combinedAudiences;
   public $customBiddingAlgorithms;
+  public $customBiddingAlgorithms_scripts;
   public $customLists;
   public $firstAndThirdPartyAudiences;
   public $floodlightGroups;
   public $googleAudiences;
+  public $guaranteedOrders;
   public $inventorySourceGroups;
   public $inventorySourceGroups_assignedInventorySources;
   public $inventorySources;
@@ -98,7 +104,7 @@ class DisplayVideo extends \Google\Service
     $this->rootUrl = $rootUrl ?: 'https://displayvideo.googleapis.com/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
-    $this->version = 'v1';
+    $this->version = 'v2';
     $this->serviceName = 'displayvideo';
 
     $this->advertisers = new DisplayVideo\Resource\Advertisers(
@@ -108,7 +114,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'audit' => [
-              'path' => 'v1/advertisers/{+advertiserId}:audit',
+              'path' => 'v2/advertisers/{+advertiserId}:audit',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -121,48 +127,12 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'bulkEditAdvertiserAssignedTargetingOptions' => [
-              'path' => 'v1/advertisers/{+advertiserId}:bulkEditAdvertiserAssignedTargetingOptions',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'advertiserId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'bulkListAdvertiserAssignedTargetingOptions' => [
-              'path' => 'v1/advertisers/{+advertiserId}:bulkListAdvertiserAssignedTargetingOptions',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'advertiserId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'orderBy' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
             ],'create' => [
-              'path' => 'v1/advertisers',
+              'path' => 'v2/advertisers',
               'httpMethod' => 'POST',
               'parameters' => [],
             ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}',
+              'path' => 'v2/advertisers/{+advertiserId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -171,8 +141,18 @@ class DisplayVideo extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'editAssignedTargetingOptions' => [
+              'path' => 'v2/advertisers/{+advertiserId}:editAssignedTargetingOptions',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}',
+              'path' => 'v2/advertisers/{+advertiserId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -182,10 +162,14 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers',
+              'path' => 'v2/advertisers',
               'httpMethod' => 'GET',
               'parameters' => [
                 'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'internalDebuggingConfig' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -206,8 +190,34 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'listAssignedTargetingOptions' => [
+              'path' => 'v2/advertisers/{+advertiserId}:listAssignedTargetingOptions',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}',
+              'path' => 'v2/advertisers/{+advertiserId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -231,7 +241,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'upload' => [
-              'path' => 'v1/advertisers/{+advertiserId}/assets',
+              'path' => 'v2/advertisers/{+advertiserId}/assets',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -250,8 +260,33 @@ class DisplayVideo extends \Google\Service
         'campaigns',
         [
           'methods' => [
-            'bulkListCampaignAssignedTargetingOptions' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns/{+campaignId}:bulkListCampaignAssignedTargetingOptions',
+            'create' => [
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns/{+campaignId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'campaignId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns/{+campaignId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -260,6 +295,16 @@ class DisplayVideo extends \Google\Service
                   'required' => true,
                 ],
                 'campaignId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -281,33 +326,8 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'advertiserId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns/{+campaignId}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'advertiserId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'campaignId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns/{+campaignId}',
+            ],'listAssignedTargetingOptions' => [
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns/{+campaignId}:listAssignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -316,16 +336,6 @@ class DisplayVideo extends \Google\Service
                   'required' => true,
                 ],
                 'campaignId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'advertiserId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -348,7 +358,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns/{+campaignId}',
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns/{+campaignId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -377,7 +387,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -402,7 +412,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -448,7 +458,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/channels',
+              'path' => 'v2/advertisers/{+advertiserId}/channels',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -462,7 +472,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/channels/{+channelId}',
+              'path' => 'v2/advertisers/{+advertiserId}/channels/{+channelId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -481,7 +491,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/channels',
+              'path' => 'v2/advertisers/{+advertiserId}/channels',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -511,7 +521,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/channels/{channelId}',
+              'path' => 'v2/advertisers/{+advertiserId}/channels/{channelId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -544,7 +554,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'bulkEdit' => [
-              'path' => 'v1/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit',
+              'path' => 'v2/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -559,7 +569,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/advertisers/{advertiserId}/channels/{+channelId}/sites',
+              'path' => 'v2/advertisers/{advertiserId}/channels/{+channelId}/sites',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -578,7 +588,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}',
+              'path' => 'v2/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -602,7 +612,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/channels/{+channelId}/sites',
+              'path' => 'v2/advertisers/{+advertiserId}/channels/{+channelId}/sites',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -637,7 +647,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'replace' => [
-              'path' => 'v1/advertisers/{advertiserId}/channels/{+channelId}/sites:replace',
+              'path' => 'v2/advertisers/{advertiserId}/channels/{+channelId}/sites:replace',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -662,7 +672,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/creatives',
+              'path' => 'v2/advertisers/{+advertiserId}/creatives',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -672,7 +682,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}/creatives/{+creativeId}',
+              'path' => 'v2/advertisers/{+advertiserId}/creatives/{+creativeId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -687,7 +697,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/creatives/{+creativeId}',
+              'path' => 'v2/advertisers/{+advertiserId}/creatives/{+creativeId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -702,7 +712,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/creatives',
+              'path' => 'v2/advertisers/{+advertiserId}/creatives',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -728,7 +738,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/creatives/{+creativeId}',
+              'path' => 'v2/advertisers/{+advertiserId}/creatives/{+creativeId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -756,8 +766,33 @@ class DisplayVideo extends \Google\Service
         'insertionOrders',
         [
           'methods' => [
-            'bulkListInsertionOrderAssignedTargetingOptions' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:bulkListInsertionOrderAssignedTargetingOptions',
+            'create' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'insertionOrderId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -766,6 +801,16 @@ class DisplayVideo extends \Google\Service
                   'required' => true,
                 ],
                 'insertionOrderId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -787,33 +832,8 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'advertiserId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'advertiserId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'insertionOrderId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}',
+            ],'listAssignedTargetingOptions' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:listAssignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -822,16 +842,6 @@ class DisplayVideo extends \Google\Service
                   'required' => true,
                 ],
                 'insertionOrderId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'advertiserId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -854,7 +864,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}',
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -882,8 +892,53 @@ class DisplayVideo extends \Google\Service
         'assignedTargetingOptions',
         [
           'methods' => [
-            'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+            'create' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'insertionOrderId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'targetingType' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'insertionOrderId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'targetingType' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'assignedTargetingOptionId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -908,7 +963,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -954,7 +1009,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/invoices',
+              'path' => 'v2/advertisers/{+advertiserId}/invoices',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -980,7 +1035,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'lookupInvoiceCurrency' => [
-              'path' => 'v1/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency',
+              'path' => 'v2/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1003,8 +1058,8 @@ class DisplayVideo extends \Google\Service
         'lineItems',
         [
           'methods' => [
-            'bulkEditLineItemAssignedTargetingOptions' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}:bulkEditLineItemAssignedTargetingOptions',
+            'bulkEditAssignedTargetingOptions' => [
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems:bulkEditAssignedTargetingOptions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1012,14 +1067,9 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'lineItemId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
               ],
-            ],'bulkListLineItemAssignedTargetingOptions' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}:bulkListLineItemAssignedTargetingOptions',
+            ],'bulkListAssignedTargetingOptions' => [
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems:bulkListAssignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1027,14 +1077,14 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'lineItemId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
                 'filter' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'lineItemIds' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'orderBy' => [
                   'location' => 'query',
@@ -1049,8 +1099,18 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'bulkUpdate' => [
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems:bulkUpdate',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1060,7 +1120,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -1074,8 +1134,23 @@ class DisplayVideo extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'duplicate' => [
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}:duplicate',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'lineItemId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'generateDefault' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems:generateDefault',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems:generateDefault',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1085,7 +1160,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1100,7 +1175,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1126,7 +1201,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -1155,7 +1230,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1175,7 +1250,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -1200,7 +1275,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1225,7 +1300,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1271,7 +1346,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/locationLists',
+              'path' => 'v2/advertisers/{+advertiserId}/locationLists',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1281,7 +1356,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/locationLists/{+locationListId}',
+              'path' => 'v2/advertisers/{+advertiserId}/locationLists/{+locationListId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1296,7 +1371,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/locationLists',
+              'path' => 'v2/advertisers/{+advertiserId}/locationLists',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1322,7 +1397,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/locationLists/{locationListId}',
+              'path' => 'v2/advertisers/{+advertiserId}/locationLists/{locationListId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -1351,7 +1426,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'bulkEdit' => [
-              'path' => 'v1/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit',
+              'path' => 'v2/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1366,7 +1441,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations',
+              'path' => 'v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1381,7 +1456,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}',
+              'path' => 'v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -1401,7 +1476,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations',
+              'path' => 'v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1442,7 +1517,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'activate' => [
-              'path' => 'v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:activate',
+              'path' => 'v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:activate',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1457,7 +1532,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/manualTriggers',
+              'path' => 'v2/advertisers/{+advertiserId}/manualTriggers',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1467,7 +1542,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'deactivate' => [
-              'path' => 'v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:deactivate',
+              'path' => 'v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:deactivate',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1482,7 +1557,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}',
+              'path' => 'v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1497,7 +1572,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/manualTriggers',
+              'path' => 'v2/advertisers/{+advertiserId}/manualTriggers',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1523,7 +1598,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}',
+              'path' => 'v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -1552,7 +1627,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/negativeKeywordLists',
+              'path' => 'v2/advertisers/{+advertiserId}/negativeKeywordLists',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1562,7 +1637,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}',
+              'path' => 'v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -1577,7 +1652,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}',
+              'path' => 'v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1592,7 +1667,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/negativeKeywordLists',
+              'path' => 'v2/advertisers/{+advertiserId}/negativeKeywordLists',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1610,7 +1685,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}',
+              'path' => 'v2/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'advertiserId' => [
@@ -1639,7 +1714,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'bulkEdit' => [
-              'path' => 'v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit',
+              'path' => 'v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1654,7 +1729,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords',
+              'path' => 'v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1669,7 +1744,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}',
+              'path' => 'v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -1689,7 +1764,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords',
+              'path' => 'v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1720,7 +1795,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'replace' => [
-              'path' => 'v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace',
+              'path' => 'v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1745,7 +1820,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -1760,7 +1835,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'path' => 'v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'advertiserId' => [
@@ -1780,7 +1855,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'path' => 'v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1800,10 +1875,214 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'targetingType' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->advertisers_youtubeAdGroupAds = new DisplayVideo\Resource\AdvertisersYoutubeAdGroupAds(
+        $this,
+        $this->serviceName,
+        'youtubeAdGroupAds',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v2/advertisers/{+advertiserId}/youtubeAdGroupAds/{+youtubeAdGroupAdId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'youtubeAdGroupAdId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/advertisers/{+advertiserId}/youtubeAdGroupAds',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->advertisers_youtubeAdGroups = new DisplayVideo\Resource\AdvertisersYoutubeAdGroups(
+        $this,
+        $this->serviceName,
+        'youtubeAdGroups',
+        [
+          'methods' => [
+            'bulkListAdGroupAssignedTargetingOptions' => [
+              'path' => 'v2/advertisers/{+advertiserId}/youtubeAdGroups:bulkListAdGroupAssignedTargetingOptions',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'youtubeAdGroupIds' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'youtubeAdGroupId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/advertisers/{+advertiserId}/youtubeAdGroups',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->advertisers_youtubeAdGroups_targetingTypes_assignedTargetingOptions = new DisplayVideo\Resource\AdvertisersYoutubeAdGroupsTargetingTypesAssignedTargetingOptions(
+        $this,
+        $this->serviceName,
+        'assignedTargetingOptions',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'youtubeAdGroupId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'targetingType' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'assignedTargetingOptionId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'youtubeAdGroupId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -1841,7 +2120,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/combinedAudiences/{+combinedAudienceId}',
+              'path' => 'v2/combinedAudiences/{+combinedAudienceId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'combinedAudienceId' => [
@@ -1859,7 +2138,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/combinedAudiences',
+              'path' => 'v2/combinedAudiences',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1897,8 +2176,12 @@ class DisplayVideo extends \Google\Service
         'customBiddingAlgorithms',
         [
           'methods' => [
-            'get' => [
-              'path' => 'v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}',
+            'create' => [
+              'path' => 'v2/customBiddingAlgorithms',
+              'httpMethod' => 'POST',
+              'parameters' => [],
+            ],'get' => [
+              'path' => 'v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'customBiddingAlgorithmId' => [
@@ -1916,7 +2199,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/customBiddingAlgorithms',
+              'path' => 'v2/customBiddingAlgorithms',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -1924,6 +2207,119 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
                 'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'customBiddingAlgorithmId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'uploadScript' => [
+              'path' => 'v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'customBiddingAlgorithmId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->customBiddingAlgorithms_scripts = new DisplayVideo\Resource\CustomBiddingAlgorithmsScripts(
+        $this,
+        $this->serviceName,
+        'scripts',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'customBiddingAlgorithmId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'customBiddingAlgorithmId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'customBiddingScriptId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'customBiddingAlgorithmId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -1955,7 +2351,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/customLists/{+customListId}',
+              'path' => 'v2/customLists/{+customListId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'customListId' => [
@@ -1969,7 +2365,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/customLists',
+              'path' => 'v2/customLists',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -2003,8 +2399,27 @@ class DisplayVideo extends \Google\Service
         'firstAndThirdPartyAudiences',
         [
           'methods' => [
-            'get' => [
-              'path' => 'v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}',
+            'create' => [
+              'path' => 'v2/firstAndThirdPartyAudiences',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'editCustomerMatchMembers' => [
+              'path' => 'v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'firstAndThirdPartyAudienceId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'firstAndThirdPartyAudienceId' => [
@@ -2022,7 +2437,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/firstAndThirdPartyAudiences',
+              'path' => 'v2/firstAndThirdPartyAudiences',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -2050,6 +2465,24 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'patch' => [
+              'path' => 'v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'firstAndThirdPartyAudienceId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
             ],
           ]
         ]
@@ -2061,7 +2494,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/floodlightGroups/{+floodlightGroupId}',
+              'path' => 'v2/floodlightGroups/{+floodlightGroupId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'floodlightGroupId' => [
@@ -2075,7 +2508,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/floodlightGroups/{floodlightGroupId}',
+              'path' => 'v2/floodlightGroups/{floodlightGroupId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'floodlightGroupId' => [
@@ -2103,7 +2536,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/googleAudiences/{+googleAudienceId}',
+              'path' => 'v2/googleAudiences/{+googleAudienceId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'googleAudienceId' => [
@@ -2121,7 +2554,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/googleAudiences',
+              'path' => 'v2/googleAudiences',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -2153,14 +2586,14 @@ class DisplayVideo extends \Google\Service
           ]
         ]
     );
-    $this->inventorySourceGroups = new DisplayVideo\Resource\InventorySourceGroups(
+    $this->guaranteedOrders = new DisplayVideo\Resource\GuaranteedOrders(
         $this,
         $this->serviceName,
-        'inventorySourceGroups',
+        'guaranteedOrders',
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/inventorySourceGroups',
+              'path' => 'v2/guaranteedOrders',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [
@@ -2172,29 +2605,21 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'delete' => [
-              'path' => 'v1/inventorySourceGroups/{+inventorySourceGroupId}',
-              'httpMethod' => 'DELETE',
+            ],'editGuaranteedOrderReadAccessors' => [
+              'path' => 'v2/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors',
+              'httpMethod' => 'POST',
               'parameters' => [
-                'inventorySourceGroupId' => [
+                'guaranteedOrderId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ],
-                'advertiserId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'partnerId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
               ],
             ],'get' => [
-              'path' => 'v1/inventorySourceGroups/{+inventorySourceGroupId}',
+              'path' => 'v2/guaranteedOrders/{+guaranteedOrderId}',
               'httpMethod' => 'GET',
               'parameters' => [
-                'inventorySourceGroupId' => [
+                'guaranteedOrderId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -2209,7 +2634,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/inventorySourceGroups',
+              'path' => 'v2/guaranteedOrders',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -2238,7 +2663,117 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/inventorySourceGroups/{inventorySourceGroupId}',
+              'path' => 'v2/guaranteedOrders/{+guaranteedOrderId}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'guaranteedOrderId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->inventorySourceGroups = new DisplayVideo\Resource\InventorySourceGroups(
+        $this,
+        $this->serviceName,
+        'inventorySourceGroups',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v2/inventorySourceGroups',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v2/inventorySourceGroups/{+inventorySourceGroupId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'inventorySourceGroupId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/inventorySourceGroups/{+inventorySourceGroupId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'inventorySourceGroupId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/inventorySourceGroups',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v2/inventorySourceGroups/{inventorySourceGroupId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'inventorySourceGroupId' => [
@@ -2270,7 +2805,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'bulkEdit' => [
-              'path' => 'v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit',
+              'path' => 'v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit',
               'httpMethod' => 'POST',
               'parameters' => [
                 'inventorySourceGroupId' => [
@@ -2280,7 +2815,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources',
+              'path' => 'v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources',
               'httpMethod' => 'POST',
               'parameters' => [
                 'inventorySourceGroupId' => [
@@ -2298,7 +2833,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}',
+              'path' => 'v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'inventorySourceGroupId' => [
@@ -2321,7 +2856,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources',
+              'path' => 'v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources',
               'httpMethod' => 'GET',
               'parameters' => [
                 'inventorySourceGroupId' => [
@@ -2364,8 +2899,31 @@ class DisplayVideo extends \Google\Service
         'inventorySources',
         [
           'methods' => [
-            'get' => [
-              'path' => 'v1/inventorySources/{+inventorySourceId}',
+            'create' => [
+              'path' => 'v2/inventorySources',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'editInventorySourceReadWriteAccessors' => [
+              'path' => 'v2/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'inventorySourceId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/inventorySources/{+inventorySourceId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'inventorySourceId' => [
@@ -2373,13 +2931,17 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'partnerId' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/inventorySources',
+              'path' => 'v2/inventorySources',
               'httpMethod' => 'GET',
               'parameters' => [
                 'advertiserId' => [
@@ -2407,6 +2969,28 @@ class DisplayVideo extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'patch' => [
+              'path' => 'v2/inventorySources/{+inventorySourceId}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'inventorySourceId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'advertiserId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'partnerId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
             ],
           ]
         ]
@@ -2427,6 +3011,16 @@ class DisplayVideo extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'upload' => [
+              'path' => 'media/{+resourceName}',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resourceName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],
           ]
         ]
@@ -2437,8 +3031,8 @@ class DisplayVideo extends \Google\Service
         'partners',
         [
           'methods' => [
-            'bulkEditPartnerAssignedTargetingOptions' => [
-              'path' => 'v1/partners/{+partnerId}:bulkEditPartnerAssignedTargetingOptions',
+            'editAssignedTargetingOptions' => [
+              'path' => 'v2/partners/{+partnerId}:editAssignedTargetingOptions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'partnerId' => [
@@ -2448,7 +3042,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/partners/{+partnerId}',
+              'path' => 'v2/partners/{+partnerId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'partnerId' => [
@@ -2458,7 +3052,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/partners',
+              'path' => 'v2/partners',
               'httpMethod' => 'GET',
               'parameters' => [
                 'filter' => [
@@ -2489,7 +3083,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/partners/{+partnerId}/channels',
+              'path' => 'v2/partners/{+partnerId}/channels',
               'httpMethod' => 'POST',
               'parameters' => [
                 'partnerId' => [
@@ -2503,7 +3097,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/partners/{+partnerId}/channels/{+channelId}',
+              'path' => 'v2/partners/{+partnerId}/channels/{+channelId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'partnerId' => [
@@ -2522,7 +3116,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/partners/{+partnerId}/channels',
+              'path' => 'v2/partners/{+partnerId}/channels',
               'httpMethod' => 'GET',
               'parameters' => [
                 'partnerId' => [
@@ -2552,7 +3146,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/partners/{+partnerId}/channels/{channelId}',
+              'path' => 'v2/partners/{+partnerId}/channels/{channelId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'partnerId' => [
@@ -2585,7 +3179,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'bulkEdit' => [
-              'path' => 'v1/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit',
+              'path' => 'v2/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit',
               'httpMethod' => 'POST',
               'parameters' => [
                 'partnerId' => [
@@ -2600,7 +3194,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/partners/{partnerId}/channels/{+channelId}/sites',
+              'path' => 'v2/partners/{partnerId}/channels/{+channelId}/sites',
               'httpMethod' => 'POST',
               'parameters' => [
                 'partnerId' => [
@@ -2619,7 +3213,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}',
+              'path' => 'v2/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'partnerId' => [
@@ -2643,7 +3237,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/partners/{+partnerId}/channels/{+channelId}/sites',
+              'path' => 'v2/partners/{+partnerId}/channels/{+channelId}/sites',
               'httpMethod' => 'GET',
               'parameters' => [
                 'partnerId' => [
@@ -2678,7 +3272,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'replace' => [
-              'path' => 'v1/partners/{partnerId}/channels/{+channelId}/sites:replace',
+              'path' => 'v2/partners/{partnerId}/channels/{+channelId}/sites:replace',
               'httpMethod' => 'POST',
               'parameters' => [
                 'partnerId' => [
@@ -2703,7 +3297,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'partnerId' => [
@@ -2718,7 +3312,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'path' => 'v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'partnerId' => [
@@ -2738,7 +3332,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
+              'path' => 'v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'partnerId' => [
@@ -2758,7 +3352,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
+              'path' => 'v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'partnerId' => [
@@ -2799,7 +3393,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/sdfdownloadtasks',
+              'path' => 'v2/sdfdownloadtasks',
               'httpMethod' => 'POST',
               'parameters' => [],
             ],
@@ -2813,7 +3407,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -2833,7 +3427,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}',
+              'path' => 'v2/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'targetingType' => [
@@ -2852,7 +3446,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/targetingTypes/{+targetingType}/targetingOptions',
+              'path' => 'v2/targetingTypes/{+targetingType}/targetingOptions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'targetingType' => [
@@ -2882,7 +3476,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'search' => [
-              'path' => 'v1/targetingTypes/{+targetingType}/targetingOptions:search',
+              'path' => 'v2/targetingTypes/{+targetingType}/targetingOptions:search',
               'httpMethod' => 'POST',
               'parameters' => [
                 'targetingType' => [
@@ -2902,7 +3496,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'bulkEditAssignedUserRoles' => [
-              'path' => 'v1/users/{+userId}:bulkEditAssignedUserRoles',
+              'path' => 'v2/users/{+userId}:bulkEditAssignedUserRoles',
               'httpMethod' => 'POST',
               'parameters' => [
                 'userId' => [
@@ -2912,11 +3506,11 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1/users',
+              'path' => 'v2/users',
               'httpMethod' => 'POST',
               'parameters' => [],
             ],'delete' => [
-              'path' => 'v1/users/{+userId}',
+              'path' => 'v2/users/{+userId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'userId' => [
@@ -2926,7 +3520,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/users/{+userId}',
+              'path' => 'v2/users/{+userId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'userId' => [
@@ -2936,7 +3530,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/users',
+              'path' => 'v2/users',
               'httpMethod' => 'GET',
               'parameters' => [
                 'filter' => [
@@ -2957,7 +3551,7 @@ class DisplayVideo extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/users/{+userId}',
+              'path' => 'v2/users/{+userId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'userId' => [

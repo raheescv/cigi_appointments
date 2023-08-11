@@ -23,6 +23,11 @@ class GoogleCloudDocumentaiV1BatchProcessRequest extends \Google\Model
   protected $documentOutputConfigDataType = '';
   protected $inputDocumentsType = GoogleCloudDocumentaiV1BatchDocumentsInputConfig::class;
   protected $inputDocumentsDataType = '';
+  protected $processOptionsType = GoogleCloudDocumentaiV1ProcessOptions::class;
+  protected $processOptionsDataType = '';
+  /**
+   * @var bool
+   */
   public $skipHumanReview;
 
   /**
@@ -53,10 +58,30 @@ class GoogleCloudDocumentaiV1BatchProcessRequest extends \Google\Model
   {
     return $this->inputDocuments;
   }
+  /**
+   * @param GoogleCloudDocumentaiV1ProcessOptions
+   */
+  public function setProcessOptions(GoogleCloudDocumentaiV1ProcessOptions $processOptions)
+  {
+    $this->processOptions = $processOptions;
+  }
+  /**
+   * @return GoogleCloudDocumentaiV1ProcessOptions
+   */
+  public function getProcessOptions()
+  {
+    return $this->processOptions;
+  }
+  /**
+   * @param bool
+   */
   public function setSkipHumanReview($skipHumanReview)
   {
     $this->skipHumanReview = $skipHumanReview;
   }
+  /**
+   * @return bool
+   */
   public function getSkipHumanReview()
   {
     return $this->skipHumanReview;

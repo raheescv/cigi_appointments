@@ -27,6 +27,12 @@ class AddonsConfig extends \Google\Model
   protected $dnsCacheConfigDataType = '';
   protected $gcePersistentDiskCsiDriverConfigType = GcePersistentDiskCsiDriverConfig::class;
   protected $gcePersistentDiskCsiDriverConfigDataType = '';
+  protected $gcpFilestoreCsiDriverConfigType = GcpFilestoreCsiDriverConfig::class;
+  protected $gcpFilestoreCsiDriverConfigDataType = '';
+  protected $gcsFuseCsiDriverConfigType = GcsFuseCsiDriverConfig::class;
+  protected $gcsFuseCsiDriverConfigDataType = '';
+  protected $gkeBackupAgentConfigType = GkeBackupAgentConfig::class;
+  protected $gkeBackupAgentConfigDataType = '';
   protected $horizontalPodAutoscalingType = HorizontalPodAutoscaling::class;
   protected $horizontalPodAutoscalingDataType = '';
   protected $httpLoadBalancingType = HttpLoadBalancing::class;
@@ -91,6 +97,48 @@ class AddonsConfig extends \Google\Model
   public function getGcePersistentDiskCsiDriverConfig()
   {
     return $this->gcePersistentDiskCsiDriverConfig;
+  }
+  /**
+   * @param GcpFilestoreCsiDriverConfig
+   */
+  public function setGcpFilestoreCsiDriverConfig(GcpFilestoreCsiDriverConfig $gcpFilestoreCsiDriverConfig)
+  {
+    $this->gcpFilestoreCsiDriverConfig = $gcpFilestoreCsiDriverConfig;
+  }
+  /**
+   * @return GcpFilestoreCsiDriverConfig
+   */
+  public function getGcpFilestoreCsiDriverConfig()
+  {
+    return $this->gcpFilestoreCsiDriverConfig;
+  }
+  /**
+   * @param GcsFuseCsiDriverConfig
+   */
+  public function setGcsFuseCsiDriverConfig(GcsFuseCsiDriverConfig $gcsFuseCsiDriverConfig)
+  {
+    $this->gcsFuseCsiDriverConfig = $gcsFuseCsiDriverConfig;
+  }
+  /**
+   * @return GcsFuseCsiDriverConfig
+   */
+  public function getGcsFuseCsiDriverConfig()
+  {
+    return $this->gcsFuseCsiDriverConfig;
+  }
+  /**
+   * @param GkeBackupAgentConfig
+   */
+  public function setGkeBackupAgentConfig(GkeBackupAgentConfig $gkeBackupAgentConfig)
+  {
+    $this->gkeBackupAgentConfig = $gkeBackupAgentConfig;
+  }
+  /**
+   * @return GkeBackupAgentConfig
+   */
+  public function getGkeBackupAgentConfig()
+  {
+    return $this->gkeBackupAgentConfig;
   }
   /**
    * @param HorizontalPodAutoscaling

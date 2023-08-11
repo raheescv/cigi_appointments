@@ -39,7 +39,7 @@ class CloudNaturalLanguage extends \Google\Service
   /** Apply machine learning models to reveal the structure and meaning of text. */
   const CLOUD_LANGUAGE =
       "https://www.googleapis.com/auth/cloud-language";
-  /** See, edit, configure, and delete your Google Cloud Platform data. */
+  /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 
@@ -89,6 +89,10 @@ class CloudNaturalLanguage extends \Google\Service
               'parameters' => [],
             ],'classifyText' => [
               'path' => 'v1/documents:classifyText',
+              'httpMethod' => 'POST',
+              'parameters' => [],
+            ],'moderateText' => [
+              'path' => 'v1/documents:moderateText',
               'httpMethod' => 'POST',
               'parameters' => [],
             ],

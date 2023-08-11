@@ -25,9 +25,17 @@ class Condition extends \Google\Model
   protected $conditionMatchedLogDataType = '';
   protected $conditionMonitoringQueryLanguageType = MonitoringQueryLanguageCondition::class;
   protected $conditionMonitoringQueryLanguageDataType = '';
+  protected $conditionPrometheusQueryLanguageType = PrometheusQueryLanguageCondition::class;
+  protected $conditionPrometheusQueryLanguageDataType = '';
   protected $conditionThresholdType = MetricThreshold::class;
   protected $conditionThresholdDataType = '';
+  /**
+   * @var string
+   */
   public $displayName;
+  /**
+   * @var string
+   */
   public $name;
 
   /**
@@ -73,6 +81,20 @@ class Condition extends \Google\Model
     return $this->conditionMonitoringQueryLanguage;
   }
   /**
+   * @param PrometheusQueryLanguageCondition
+   */
+  public function setConditionPrometheusQueryLanguage(PrometheusQueryLanguageCondition $conditionPrometheusQueryLanguage)
+  {
+    $this->conditionPrometheusQueryLanguage = $conditionPrometheusQueryLanguage;
+  }
+  /**
+   * @return PrometheusQueryLanguageCondition
+   */
+  public function getConditionPrometheusQueryLanguage()
+  {
+    return $this->conditionPrometheusQueryLanguage;
+  }
+  /**
    * @param MetricThreshold
    */
   public function setConditionThreshold(MetricThreshold $conditionThreshold)
@@ -86,18 +108,30 @@ class Condition extends \Google\Model
   {
     return $this->conditionThreshold;
   }
+  /**
+   * @param string
+   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
+  /**
+   * @return string
+   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
+  /**
+   * @param string
+   */
   public function setName($name)
   {
     $this->name = $name;
   }
+  /**
+   * @return string
+   */
   public function getName()
   {
     return $this->name;

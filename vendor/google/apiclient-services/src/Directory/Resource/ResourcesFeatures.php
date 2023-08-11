@@ -26,7 +26,7 @@ use Google\Service\Directory\Features;
  * Typical usage is:
  *  <code>
  *   $adminService = new Google\Service\Directory(...);
- *   $features = $adminService->features;
+ *   $features = $adminService->resources_features;
  *  </code>
  */
 class ResourcesFeatures extends \Google\Service\Resource
@@ -97,7 +97,7 @@ class ResourcesFeatures extends \Google\Service\Resource
     return $this->call('list', [$params], Features::class);
   }
   /**
-   * Patches a feature via Apiary Patch Orchestration. (features.patch)
+   * Patches a feature. (features.patch)
    *
    * @param string $customer The unique ID for the customer's Google Workspace
    * account. As an account administrator, you can also use the `my_customer`

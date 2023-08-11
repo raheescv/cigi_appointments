@@ -20,10 +20,16 @@ namespace Google\Service;
 use Google\Client;
 
 /**
- * Service definition for GoogleAnalyticsAdmin (v1alpha).
+ * Service definition for GoogleAnalyticsAdmin (v1beta).
  *
  * <p>
-</p>
+ * Manage properties in Google Analytics. Warning: Creating multiple Customer
+ * Applications, Accounts, or Projects to simulate or act as a single Customer
+ * Application, Account, or Project (respectively) or to circumvent Service-
+ * specific usage limits or quotas is a direct violation of Google Cloud
+ * Platform Terms of Service as well as Google APIs Terms of Service. These
+ * actions can result in immediate termination of your GCP project(s) without
+ * any warning.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -37,34 +43,20 @@ class GoogleAnalyticsAdmin extends \Google\Service
   /** Edit Google Analytics management entities. */
   const ANALYTICS_EDIT =
       "https://www.googleapis.com/auth/analytics.edit";
-  /** Manage Google Analytics Account users by email address. */
-  const ANALYTICS_MANAGE_USERS =
-      "https://www.googleapis.com/auth/analytics.manage.users";
-  /** View Google Analytics user permissions. */
-  const ANALYTICS_MANAGE_USERS_READONLY =
-      "https://www.googleapis.com/auth/analytics.manage.users.readonly";
   /** See and download your Google Analytics data. */
   const ANALYTICS_READONLY =
       "https://www.googleapis.com/auth/analytics.readonly";
 
   public $accountSummaries;
   public $accounts;
-  public $accounts_userLinks;
   public $properties;
-  public $properties_androidAppDataStreams;
-  public $properties_androidAppDataStreams_measurementProtocolSecrets;
   public $properties_conversionEvents;
   public $properties_customDimensions;
   public $properties_customMetrics;
-  public $properties_displayVideo360AdvertiserLinkProposals;
-  public $properties_displayVideo360AdvertiserLinks;
+  public $properties_dataStreams;
+  public $properties_dataStreams_measurementProtocolSecrets;
   public $properties_firebaseLinks;
   public $properties_googleAdsLinks;
-  public $properties_iosAppDataStreams;
-  public $properties_iosAppDataStreams_measurementProtocolSecrets;
-  public $properties_userLinks;
-  public $properties_webDataStreams;
-  public $properties_webDataStreams_measurementProtocolSecrets;
 
   /**
    * Constructs the internal representation of the GoogleAnalyticsAdmin service.
@@ -79,7 +71,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
     $this->rootUrl = $rootUrl ?: 'https://analyticsadmin.googleapis.com/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
-    $this->version = 'v1alpha';
+    $this->version = 'v1beta';
     $this->serviceName = 'analyticsadmin';
 
     $this->accountSummaries = new GoogleAnalyticsAdmin\Resource\AccountSummaries(
@@ -89,7 +81,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
         [
           'methods' => [
             'list' => [
-              'path' => 'v1alpha/accountSummaries',
+              'path' => 'v1beta/accountSummaries',
               'httpMethod' => 'GET',
               'parameters' => [
                 'pageSize' => [
@@ -112,7 +104,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
         [
           'methods' => [
             'delete' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -122,7 +114,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -132,7 +124,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'getDataSharingSettings' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -142,7 +134,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/accounts',
+              'path' => 'v1beta/accounts',
               'httpMethod' => 'GET',
               'parameters' => [
                 'pageSize' => [
@@ -159,7 +151,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -173,141 +165,24 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'provisionAccountTicket' => [
-              'path' => 'v1alpha/accounts:provisionAccountTicket',
+              'path' => 'v1beta/accounts:provisionAccountTicket',
               'httpMethod' => 'POST',
               'parameters' => [],
+            ],'runAccessReport' => [
+              'path' => 'v1beta/{+entity}:runAccessReport',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'entity' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'searchChangeHistoryEvents' => [
-              'path' => 'v1alpha/{+account}:searchChangeHistoryEvents',
+              'path' => 'v1beta/{+account}:searchChangeHistoryEvents',
               'httpMethod' => 'POST',
               'parameters' => [
                 'account' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->accounts_userLinks = new GoogleAnalyticsAdmin\Resource\AccountsUserLinks(
-        $this,
-        $this->serviceName,
-        'userLinks',
-        [
-          'methods' => [
-            'audit' => [
-              'path' => 'v1alpha/{+parent}/userLinks:audit',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'batchCreate' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchCreate',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'batchDelete' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchDelete',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'batchGet' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchGet',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'names' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
-              ],
-            ],'batchUpdate' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchUpdate',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'create' => [
-              'path' => 'v1alpha/{+parent}/userLinks',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'notifyNewUser' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/userLinks',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -323,12 +198,22 @@ class GoogleAnalyticsAdmin extends \Google\Service
         'properties',
         [
           'methods' => [
-            'create' => [
-              'path' => 'v1alpha/properties',
+            'acknowledgeUserDataCollection' => [
+              'path' => 'v1beta/{+property}:acknowledgeUserDataCollection',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'property' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'create' => [
+              'path' => 'v1beta/properties',
               'httpMethod' => 'POST',
               'parameters' => [],
             ],'delete' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -338,7 +223,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -347,8 +232,8 @@ class GoogleAnalyticsAdmin extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'getGoogleSignalsSettings' => [
-              'path' => 'v1alpha/{+name}',
+            ],'getDataRetentionSettings' => [
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -358,7 +243,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/properties',
+              'path' => 'v1beta/properties',
               'httpMethod' => 'GET',
               'parameters' => [
                 'filter' => [
@@ -379,7 +264,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -392,142 +277,18 @@ class GoogleAnalyticsAdmin extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'updateGoogleSignalsSettings' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_androidAppDataStreams = new GoogleAnalyticsAdmin\Resource\PropertiesAndroidAppDataStreams(
-        $this,
-        $this->serviceName,
-        'androidAppDataStreams',
-        [
-          'methods' => [
-            'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/androidAppDataStreams',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_androidAppDataStreams_measurementProtocolSecrets = new GoogleAnalyticsAdmin\Resource\PropertiesAndroidAppDataStreamsMeasurementProtocolSecrets(
-        $this,
-        $this->serviceName,
-        'measurementProtocolSecrets',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1alpha/{+parent}/measurementProtocolSecrets',
+            ],'runAccessReport' => [
+              'path' => 'v1beta/{+entity}:runAccessReport',
               'httpMethod' => 'POST',
               'parameters' => [
-                'parent' => [
+                'entity' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ],
               ],
-            ],'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/measurementProtocolSecrets',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
+            ],'updateDataRetentionSettings' => [
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -551,7 +312,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1alpha/{+parent}/conversionEvents',
+              'path' => 'v1beta/{+parent}/conversionEvents',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -561,7 +322,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -571,7 +332,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -581,7 +342,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/{+parent}/conversionEvents',
+              'path' => 'v1beta/{+parent}/conversionEvents',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -609,7 +370,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
         [
           'methods' => [
             'archive' => [
-              'path' => 'v1alpha/{+name}:archive',
+              'path' => 'v1beta/{+name}:archive',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -619,7 +380,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1alpha/{+parent}/customDimensions',
+              'path' => 'v1beta/{+parent}/customDimensions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -629,7 +390,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -639,7 +400,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/{+parent}/customDimensions',
+              'path' => 'v1beta/{+parent}/customDimensions',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -657,7 +418,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -681,7 +442,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
         [
           'methods' => [
             'archive' => [
-              'path' => 'v1alpha/{+name}:archive',
+              'path' => 'v1beta/{+name}:archive',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -691,7 +452,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'create' => [
-              'path' => 'v1alpha/{+parent}/customMetrics',
+              'path' => 'v1beta/{+parent}/customMetrics',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -701,7 +462,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -711,7 +472,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/{+parent}/customMetrics',
+              'path' => 'v1beta/{+parent}/customMetrics',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -729,7 +490,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -746,92 +507,14 @@ class GoogleAnalyticsAdmin extends \Google\Service
           ]
         ]
     );
-    $this->properties_displayVideo360AdvertiserLinkProposals = new GoogleAnalyticsAdmin\Resource\PropertiesDisplayVideo360AdvertiserLinkProposals(
+    $this->properties_dataStreams = new GoogleAnalyticsAdmin\Resource\PropertiesDataStreams(
         $this,
         $this->serviceName,
-        'displayVideo360AdvertiserLinkProposals',
-        [
-          'methods' => [
-            'approve' => [
-              'path' => 'v1alpha/{+name}:approve',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'cancel' => [
-              'path' => 'v1alpha/{+name}:cancel',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'create' => [
-              'path' => 'v1alpha/{+parent}/displayVideo360AdvertiserLinkProposals',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/displayVideo360AdvertiserLinkProposals',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_displayVideo360AdvertiserLinks = new GoogleAnalyticsAdmin\Resource\PropertiesDisplayVideo360AdvertiserLinks(
-        $this,
-        $this->serviceName,
-        'displayVideo360AdvertiserLinks',
+        'dataStreams',
         [
           'methods' => [
             'create' => [
-              'path' => 'v1alpha/{+parent}/displayVideo360AdvertiserLinks',
+              'path' => 'v1beta/{+parent}/dataStreams',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -841,7 +524,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -851,7 +534,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -861,7 +544,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/{+parent}/displayVideo360AdvertiserLinks',
+              'path' => 'v1beta/{+parent}/dataStreams',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -879,7 +562,79 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->properties_dataStreams_measurementProtocolSecrets = new GoogleAnalyticsAdmin\Resource\PropertiesDataStreamsMeasurementProtocolSecrets(
+        $this,
+        $this->serviceName,
+        'measurementProtocolSecrets',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1beta/{+parent}/measurementProtocolSecrets',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1beta/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1beta/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1beta/{+parent}/measurementProtocolSecrets',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -903,7 +658,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1alpha/{+parent}/firebaseLinks',
+              'path' => 'v1beta/{+parent}/firebaseLinks',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -913,7 +668,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -923,7 +678,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/{+parent}/firebaseLinks',
+              'path' => 'v1beta/{+parent}/firebaseLinks',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -951,7 +706,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1alpha/{+parent}/googleAdsLinks',
+              'path' => 'v1beta/{+parent}/googleAdsLinks',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -961,7 +716,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -971,7 +726,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1alpha/{+parent}/googleAdsLinks',
+              'path' => 'v1beta/{+parent}/googleAdsLinks',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -989,446 +744,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_iosAppDataStreams = new GoogleAnalyticsAdmin\Resource\PropertiesIosAppDataStreams(
-        $this,
-        $this->serviceName,
-        'iosAppDataStreams',
-        [
-          'methods' => [
-            'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/iosAppDataStreams',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_iosAppDataStreams_measurementProtocolSecrets = new GoogleAnalyticsAdmin\Resource\PropertiesIosAppDataStreamsMeasurementProtocolSecrets(
-        $this,
-        $this->serviceName,
-        'measurementProtocolSecrets',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1alpha/{+parent}/measurementProtocolSecrets',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/measurementProtocolSecrets',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_userLinks = new GoogleAnalyticsAdmin\Resource\PropertiesUserLinks(
-        $this,
-        $this->serviceName,
-        'userLinks',
-        [
-          'methods' => [
-            'audit' => [
-              'path' => 'v1alpha/{+parent}/userLinks:audit',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'batchCreate' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchCreate',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'batchDelete' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchDelete',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'batchGet' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchGet',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'names' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
-              ],
-            ],'batchUpdate' => [
-              'path' => 'v1alpha/{+parent}/userLinks:batchUpdate',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'create' => [
-              'path' => 'v1alpha/{+parent}/userLinks',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'notifyNewUser' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/userLinks',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_webDataStreams = new GoogleAnalyticsAdmin\Resource\PropertiesWebDataStreams(
-        $this,
-        $this->serviceName,
-        'webDataStreams',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1alpha/{+parent}/webDataStreams',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'getEnhancedMeasurementSettings' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'getGlobalSiteTag' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/webDataStreams',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'updateEnhancedMeasurementSettings' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->properties_webDataStreams_measurementProtocolSecrets = new GoogleAnalyticsAdmin\Resource\PropertiesWebDataStreamsMeasurementProtocolSecrets(
-        $this,
-        $this->serviceName,
-        'measurementProtocolSecrets',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1alpha/{+parent}/measurementProtocolSecrets',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1alpha/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1alpha/{+parent}/measurementProtocolSecrets',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1alpha/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [

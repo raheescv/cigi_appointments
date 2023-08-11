@@ -1,12 +1,12 @@
 <?php
 /* ----------------------------------------------------------------------------
- * Easy!Appointments - Open Source Web Scheduler
+ * Easy!Appointments - Online Appointment Scheduler
  *
  * @package     EasyAppointments
  * @author      A.Tselegidis <alextselegidis@gmail.com>
- * @copyright   Copyright (c) 2013 - 2020, Alex Tselegidis
- * @license     http://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        http://easyappointments.org
+ * @copyright   Copyright (c) Alex Tselegidis
+ * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
+ * @link        https://easyappointments.org
  * @since       v1.0.0
  * ---------------------------------------------------------------------------- */
 
@@ -30,29 +30,26 @@ class Config {
     // GENERAL SETTINGS
     // ------------------------------------------------------------------------
 
-    const BASE_URL      = 'https://booking.cigi.org';
+    const BASE_URL      = 'http://localhost/cigi_appointments';
     const LANGUAGE      = 'english';
-    const DEBUG_MODE    = FALSE;
+    const DEBUG_MODE    = TRUE;
 
     // ------------------------------------------------------------------------
     // DATABASE SETTINGS
     // ------------------------------------------------------------------------
 
     const DB_HOST       = 'localhost';
-    const DB_NAME       = 'u511725780_booking';
-    const DB_USERNAME   = 'u511725780_book';
-    const DB_PASSWORD   = 'DkS]x|1j[4';
+    const DB_NAME       = 'easyappointments';
+    const DB_USERNAME   = 'root';
+    const DB_PASSWORD   = '';
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC
     // ------------------------------------------------------------------------
 
-    const GOOGLE_SYNC_FEATURE   = TRUE; // Enter TRUE or FALSE
-    const GOOGLE_PRODUCT_NAME   = 'CIGI Appointments';
-    const GOOGLE_CLIENT_ID      = '602520676223-mgktvbpplua832o1qebu5k6217duthr1.apps.googleusercontent.com';
-    const GOOGLE_CLIENT_SECRET  = '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';
-    const GOOGLE_API_KEY        = 'AIzaSyC4R2g_OuzvFzFInipyVN84gts3NxZjmrw';
+    const GOOGLE_SYNC_FEATURE   = FALSE; // Enter TRUE or FALSE
+    const GOOGLE_PRODUCT_NAME   = '';
+    const GOOGLE_CLIENT_ID      = '';
+    const GOOGLE_CLIENT_SECRET  = '';
+    const GOOGLE_API_KEY        = '';
 }
-
-/* End of file config.php */
-/* Location: ./config.php */

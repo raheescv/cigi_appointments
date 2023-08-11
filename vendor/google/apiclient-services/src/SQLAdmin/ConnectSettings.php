@@ -20,29 +20,76 @@ namespace Google\Service\SQLAdmin;
 class ConnectSettings extends \Google\Collection
 {
   protected $collection_key = 'ipAddresses';
+  /**
+   * @var string
+   */
   public $backendType;
+  /**
+   * @var string
+   */
   public $databaseVersion;
+  /**
+   * @var string
+   */
+  public $dnsName;
   protected $ipAddressesType = IpMapping::class;
   protected $ipAddressesDataType = 'array';
+  /**
+   * @var string
+   */
   public $kind;
+  /**
+   * @var bool
+   */
+  public $pscEnabled;
+  /**
+   * @var string
+   */
+  public $region;
   protected $serverCaCertType = SslCert::class;
   protected $serverCaCertDataType = '';
 
+  /**
+   * @param string
+   */
   public function setBackendType($backendType)
   {
     $this->backendType = $backendType;
   }
+  /**
+   * @return string
+   */
   public function getBackendType()
   {
     return $this->backendType;
   }
+  /**
+   * @param string
+   */
   public function setDatabaseVersion($databaseVersion)
   {
     $this->databaseVersion = $databaseVersion;
   }
+  /**
+   * @return string
+   */
   public function getDatabaseVersion()
   {
     return $this->databaseVersion;
+  }
+  /**
+   * @param string
+   */
+  public function setDnsName($dnsName)
+  {
+    $this->dnsName = $dnsName;
+  }
+  /**
+   * @return string
+   */
+  public function getDnsName()
+  {
+    return $this->dnsName;
   }
   /**
    * @param IpMapping[]
@@ -58,13 +105,47 @@ class ConnectSettings extends \Google\Collection
   {
     return $this->ipAddresses;
   }
+  /**
+   * @param string
+   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
+  /**
+   * @return string
+   */
   public function getKind()
   {
     return $this->kind;
+  }
+  /**
+   * @param bool
+   */
+  public function setPscEnabled($pscEnabled)
+  {
+    $this->pscEnabled = $pscEnabled;
+  }
+  /**
+   * @return bool
+   */
+  public function getPscEnabled()
+  {
+    return $this->pscEnabled;
+  }
+  /**
+   * @param string
+   */
+  public function setRegion($region)
+  {
+    $this->region = $region;
+  }
+  /**
+   * @return string
+   */
+  public function getRegion()
+  {
+    return $this->region;
   }
   /**
    * @param SslCert

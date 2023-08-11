@@ -31,7 +31,10 @@ use Google\Service\AndroidPublisher\InappproductsListResponse;
 class Inappproducts extends \Google\Service\Resource
 {
   /**
-   * Deletes an in-app product (i.e. a managed product or a subscriptions).
+   * Deletes an in-app product (i.e. a managed product or a subscription). This
+   * method should no longer be used to delete subscriptions. See [this
+   * article](https://android-developers.googleblog.com/2023/06/changes-to-google-
+   * play-developer-api-june-2023.html) for more information.
    * (inappproducts.delete)
    *
    * @param string $packageName Package name of the app.
@@ -46,7 +49,9 @@ class Inappproducts extends \Google\Service\Resource
   }
   /**
    * Gets an in-app product, which can be a managed product or a subscription.
-   * (inappproducts.get)
+   * This method should no longer be used to retrieve subscriptions. See [this
+   * article](https://android-developers.googleblog.com/2023/06/changes-to-google-
+   * play-developer-api-june-2023.html) for more information. (inappproducts.get)
    *
    * @param string $packageName Package name of the app.
    * @param string $sku Unique identifier for the in-app product.
@@ -60,7 +65,10 @@ class Inappproducts extends \Google\Service\Resource
     return $this->call('get', [$params], InAppProduct::class);
   }
   /**
-   * Creates an in-app product (i.e. a managed product or a subscriptions).
+   * Creates an in-app product (i.e. a managed product or a subscription). This
+   * method should no longer be used to create subscriptions. See [this
+   * article](https://android-developers.googleblog.com/2023/06/changes-to-google-
+   * play-developer-api-june-2023.html) for more information.
    * (inappproducts.insert)
    *
    * @param string $packageName Package name of the app.
@@ -80,15 +88,22 @@ class Inappproducts extends \Google\Service\Resource
     return $this->call('insert', [$params], InAppProduct::class);
   }
   /**
-   * Lists all in-app products - both managed products and subscriptions.
-   * (inappproducts.listInappproducts)
+   * Lists all in-app products - both managed products and subscriptions. If an
+   * app has a large number of in-app products, the response may be paginated. In
+   * this case the response field `tokenPagination.nextPageToken` will be set and
+   * the caller should provide its value as a `token` request parameter to
+   * retrieve the next page. This method should no longer be used to retrieve
+   * subscriptions. See [this article](https://android-
+   * developers.googleblog.com/2023/06/changes-to-google-play-developer-api-
+   * june-2023.html) for more information. (inappproducts.listInappproducts)
    *
    * @param string $packageName Package name of the app.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string maxResults How many results the list operation should
-   * return.
-   * @opt_param string startIndex The index of the first element to return.
+   * @opt_param string maxResults Deprecated and ignored. The page size is
+   * determined by the server.
+   * @opt_param string startIndex Deprecated and ignored. Set the `token`
+   * parameter to retrieve the next page.
    * @opt_param string token Pagination token. If empty, list starts at the first
    * product.
    * @return InappproductsListResponse
@@ -100,7 +115,10 @@ class Inappproducts extends \Google\Service\Resource
     return $this->call('list', [$params], InappproductsListResponse::class);
   }
   /**
-   * Patches an in-app product (i.e. a managed product or a subscriptions).
+   * Patches an in-app product (i.e. a managed product or a subscription). This
+   * method should no longer be used to update subscriptions. See [this
+   * article](https://android-developers.googleblog.com/2023/06/changes-to-google-
+   * play-developer-api-june-2023.html) for more information.
    * (inappproducts.patch)
    *
    * @param string $packageName Package name of the app.
@@ -121,7 +139,10 @@ class Inappproducts extends \Google\Service\Resource
     return $this->call('patch', [$params], InAppProduct::class);
   }
   /**
-   * Updates an in-app product (i.e. a managed product or a subscriptions).
+   * Updates an in-app product (i.e. a managed product or a subscription). This
+   * method should no longer be used to update subscriptions. See [this
+   * article](https://android-developers.googleblog.com/2023/06/changes-to-google-
+   * play-developer-api-june-2023.html) for more information.
    * (inappproducts.update)
    *
    * @param string $packageName Package name of the app.
@@ -129,6 +150,8 @@ class Inappproducts extends \Google\Service\Resource
    * @param InAppProduct $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool allowMissing If set to true, and the in-app product with the
+   * given package_name and sku doesn't exist, the in-app product will be created.
    * @opt_param bool autoConvertMissingPrices If true the prices for all regions
    * targeted by the parent app that don't have a price specified for this in-app
    * product will be auto converted to the target currency based on the default

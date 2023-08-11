@@ -35,7 +35,7 @@ use Google\Client;
  */
 class Container extends \Google\Service
 {
-  /** See, edit, configure, and delete your Google Cloud Platform data. */
+  /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 
@@ -132,7 +132,17 @@ class Container extends \Google\Service
         'clusters',
         [
           'methods' => [
-            'completeIpRotation' => [
+            'checkAutopilotCompatibility' => [
+              'path' => 'v1/{+name}:checkAutopilotCompatibility',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'completeIpRotation' => [
               'path' => 'v1/{+name}:completeIpRotation',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -354,7 +364,17 @@ class Container extends \Google\Service
         'nodePools',
         [
           'methods' => [
-            'create' => [
+            'completeUpgrade' => [
+              'path' => 'v1/{+name}:completeUpgrade',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'create' => [
               'path' => 'v1/{+parent}/nodePools',
               'httpMethod' => 'POST',
               'parameters' => [

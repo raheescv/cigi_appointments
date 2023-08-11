@@ -26,7 +26,7 @@ use Google\Service\Directory\Channel;
  * Typical usage is:
  *  <code>
  *   $adminService = new Google\Service\Directory(...);
- *   $aliases = $adminService->aliases;
+ *   $aliases = $adminService->users_aliases;
  *  </code>
  */
 class UsersAliases extends \Google\Service\Resource
@@ -77,7 +77,7 @@ class UsersAliases extends \Google\Service\Resource
     return $this->call('list', [$params], Aliases::class);
   }
   /**
-   * Watch for changes in users list. (aliases.watch)
+   * Watches for changes in users list. (aliases.watch)
    *
    * @param string $userKey Email or immutable ID of the user
    * @param Channel $postBody

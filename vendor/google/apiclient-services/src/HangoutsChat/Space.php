@@ -19,48 +19,199 @@ namespace Google\Service\HangoutsChat;
 
 class Space extends \Google\Model
 {
+  /**
+   * @var bool
+   */
+  public $adminInstalled;
+  /**
+   * @var string
+   */
   public $displayName;
+  /**
+   * @var bool
+   */
+  public $externalUserAllowed;
+  /**
+   * @var string
+   */
   public $name;
+  /**
+   * @var bool
+   */
   public $singleUserBotDm;
+  protected $spaceDetailsType = SpaceDetails::class;
+  protected $spaceDetailsDataType = '';
+  /**
+   * @var string
+   */
+  public $spaceHistoryState;
+  /**
+   * @var string
+   */
+  public $spaceThreadingState;
+  /**
+   * @var string
+   */
+  public $spaceType;
+  /**
+   * @var bool
+   */
   public $threaded;
+  /**
+   * @var string
+   */
   public $type;
 
+  /**
+   * @param bool
+   */
+  public function setAdminInstalled($adminInstalled)
+  {
+    $this->adminInstalled = $adminInstalled;
+  }
+  /**
+   * @return bool
+   */
+  public function getAdminInstalled()
+  {
+    return $this->adminInstalled;
+  }
+  /**
+   * @param string
+   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
+  /**
+   * @return string
+   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
+  /**
+   * @param bool
+   */
+  public function setExternalUserAllowed($externalUserAllowed)
+  {
+    $this->externalUserAllowed = $externalUserAllowed;
+  }
+  /**
+   * @return bool
+   */
+  public function getExternalUserAllowed()
+  {
+    return $this->externalUserAllowed;
+  }
+  /**
+   * @param string
+   */
   public function setName($name)
   {
     $this->name = $name;
   }
+  /**
+   * @return string
+   */
   public function getName()
   {
     return $this->name;
   }
+  /**
+   * @param bool
+   */
   public function setSingleUserBotDm($singleUserBotDm)
   {
     $this->singleUserBotDm = $singleUserBotDm;
   }
+  /**
+   * @return bool
+   */
   public function getSingleUserBotDm()
   {
     return $this->singleUserBotDm;
   }
+  /**
+   * @param SpaceDetails
+   */
+  public function setSpaceDetails(SpaceDetails $spaceDetails)
+  {
+    $this->spaceDetails = $spaceDetails;
+  }
+  /**
+   * @return SpaceDetails
+   */
+  public function getSpaceDetails()
+  {
+    return $this->spaceDetails;
+  }
+  /**
+   * @param string
+   */
+  public function setSpaceHistoryState($spaceHistoryState)
+  {
+    $this->spaceHistoryState = $spaceHistoryState;
+  }
+  /**
+   * @return string
+   */
+  public function getSpaceHistoryState()
+  {
+    return $this->spaceHistoryState;
+  }
+  /**
+   * @param string
+   */
+  public function setSpaceThreadingState($spaceThreadingState)
+  {
+    $this->spaceThreadingState = $spaceThreadingState;
+  }
+  /**
+   * @return string
+   */
+  public function getSpaceThreadingState()
+  {
+    return $this->spaceThreadingState;
+  }
+  /**
+   * @param string
+   */
+  public function setSpaceType($spaceType)
+  {
+    $this->spaceType = $spaceType;
+  }
+  /**
+   * @return string
+   */
+  public function getSpaceType()
+  {
+    return $this->spaceType;
+  }
+  /**
+   * @param bool
+   */
   public function setThreaded($threaded)
   {
     $this->threaded = $threaded;
   }
+  /**
+   * @return bool
+   */
   public function getThreaded()
   {
     return $this->threaded;
   }
+  /**
+   * @param string
+   */
   public function setType($type)
   {
     $this->type = $type;
   }
+  /**
+   * @return string
+   */
   public function getType()
   {
     return $this->type;
