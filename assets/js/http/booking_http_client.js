@@ -194,6 +194,19 @@ App.Http.Booking = (function () {
                     width: '100vw',
                     opacity: '0.5'
                 });
+                // Append the loader element with inline CSS
+                const $loader = $('<div>').appendTo($layer).css({
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '60px',
+                    height: '60px',
+                    border: '6px solid #f3f3f3',
+                    borderTop: '6px solid #3498db',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                });
             }
         })
             .done((response) => {
